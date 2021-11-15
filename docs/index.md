@@ -129,5 +129,3 @@ Package version:
   stringi_1.7.5   stringr_1.4.0   tinytex_0.34    tools_3.6.3    
   utils_3.6.3     xfun_0.26       yaml_2.2.1     
 ```
-
-# References {-}
