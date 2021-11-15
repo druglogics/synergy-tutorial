@@ -1,4 +1,4 @@
 book_filename: "main"
 output_dir: "docs"
-new_session: true
+new_session: false
 delete_merged_file: true
