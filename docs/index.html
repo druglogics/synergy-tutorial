@@ -929,7 +929,7 @@ div.csl-indent {
 <div id="header">
 <h1 class="title">Tutorial for synergy prediction using the DrugLogics software pipeline</h1>
 <p class="author"><em><a href="https://github.com/bblodfon">John Zobolas</a></em></p>
-<p class="date"><em>Last updated: 15 November, 2021</em></p>
+<p class="date"><em>Last updated: 16 November, 2021</em></p>
 </div>
 <div id="intro" class="section level1 unnumbered">
 <h1>Intro</h1>
@@ -993,8 +993,10 @@ Here, we define 3 nodes that signal cell proliferation when active (<code>RSK_f<
 More info can be found <a href="https://druglogics.github.io/druglogics-doc/drug-panel.html">here</a>.</li>
 <li><a href="https://github.com/druglogics/druglogics-synergy/tree/v1.2.1/ags_cascade_1.0/config"><code>config</code></a>: configuration file that defines several parameters used by gitsbe and drabme.
 Apart from the short description for each parameter provided in the <code>config</code> file, there is a more complete documentation of each option <a href="https://druglogics.github.io/druglogics-doc/gitsbe-config.html">available here</a>.
-The most important options for <a href="https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/config#L27">gitsbe</a> are the tool used to calculate the models’ attractors (bioLQM <span class="citation">(<a href="#ref-Naldi2018" role="doc-biblioref">Naldi 2018</a>)</span>), the number of simulations (50), number of generations per simulation (20), number of models per generation (20), number of best-fit models to save after each simulation is finished (3) and the type of <a href="https://druglogics.github.io/druglogics-doc/gitsbe-config.html#mutation-types">model mutations</a> used (<em>balance</em> or <em>link operator</em> mutations).
-For <a href="https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/config#L96">drabme</a>, the two most important configuration parameters are the maximum drug set size to test (2, i.e. up to drug pairs) and the method used for the calculation of drug synergies (we use HSA <span class="citation">(<a href="#ref-gaddum1940pharmacology" role="doc-biblioref">Gaddum 1940</a>)</span> in the <code>config</code> file, but also Bliss <span class="citation">(<a href="#ref-Bliss1939" role="doc-biblioref">Bliss 1939</a>)</span> is available).</li>
+<ul>
+<li>The most important options for <a href="https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/config#L27">gitsbe</a> are the tool used to calculate the models’ attractors (bioLQM <span class="citation">(<a href="#ref-Naldi2018" role="doc-biblioref">Naldi 2018</a>)</span>), the number of simulations (50), number of generations per simulation (20), number of models per generation (20), number of best-fit models to save after each simulation is finished (3) and the type of <a href="https://druglogics.github.io/druglogics-doc/gitsbe-config.html#mutation-types">model mutations</a> used (<em>balance</em> or <em>link operator</em> mutations).</li>
+<li>For <a href="https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/config#L96">drabme</a>, the two most important configuration parameters are the maximum drug set size to test (2, i.e. up to drug pairs) and the method used for the calculation of drug synergies (we use HSA <span class="citation">(<a href="#ref-gaddum1940pharmacology" role="doc-biblioref">Gaddum 1940</a>)</span> in the <code>config</code> file, but also Bliss <span class="citation">(<a href="#ref-Bliss1939" role="doc-biblioref">Bliss 1939</a>)</span> is available).</li>
+</ul></li>
 </ol>
 </div>
 <div id="outputs" class="section level2 unnumbered">
@@ -1053,9 +1055,15 @@ Naldi, Aurélien. 2018. <span>“<span class="nocase">BioLQM: A Java Toolkit for
 </div>
 </div>
 </div>
+
+
+
+
+
+
 <div class="footnotes">
 <hr />
-<ol>
+<ol start="1">
 <li id="fn1"><p>Sorry, but due to GitHub not allowing users to download a public package without a token, you have to install each dependency repository (gitsbe, drabme) separately!<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
