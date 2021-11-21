@@ -1083,8 +1083,8 @@ All <span class="math inline">\(21\)</span> drug combinations from the <a href="
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="at">data =</span> pred_hsa, <span class="at">options =</span> </span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">7</span>, <span class="at">lengthMenu =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">14</span>, <span class="dv">21</span>), <span class="at">searching =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  DT<span class="sc">::</span><span class="fu">formatRound</span>(<span class="at">columns =</span> <span class="dv">2</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
-<div id="htmlwidget-8ed3757f394f4697fa60" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8ed3757f394f4697fa60">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],["PI-PD","PI-CT","PI-BI","PI-PK","PI-AK","PI-5Z","PD-CT","PD-BI","PD-PK","PD-AK","PD-5Z","CT-BI","CT-PK","CT-AK","CT-5Z","BI-PK","BI-AK","BI-5Z","PK-AK","PK-5Z","AK-5Z"],[-0.633699633699634,0,-0.204448329448329,-0.224852862493312,-0.0333288172334372,-0.313618771165941,0,-0.325976107226107,0,-0.942822870851659,0,0,0,0,0,-0.564138576779026,-0.165625813166797,0,-0.518270229440091,0,-0.462540217557837],[1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>perturbation<\/th>\n      <th>ss_score<\/th>\n      <th>observed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"lengthMenu":[7,14,21],"searching":false,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render"],"jsHooks":[]}</script>
+<div id="htmlwidget-d99e7033de3a1fc14453" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d99e7033de3a1fc14453">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],["PI-PD","PI-CT","PI-BI","PI-PK","PI-AK","PI-5Z","PD-CT","PD-BI","PD-PK","PD-AK","PD-5Z","CT-BI","CT-PK","CT-AK","CT-5Z","BI-PK","BI-AK","BI-5Z","PK-AK","PK-5Z","AK-5Z"],[-0.633699633699634,0,-0.204448329448329,-0.224852862493312,-0.0333288172334372,-0.313618771165941,0,-0.325976107226107,0,-0.942822870851659,0,0,0,0,0,-0.564138576779026,-0.165625813166797,0,-0.518270229440091,0,-0.462540217557837],[1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>perturbation<\/th>\n      <th>ss_score<\/th>\n      <th>observed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"lengthMenu":[7,14,21],"searching":false,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render"],"jsHooks":[]}</script>
 </div>
 <div id="receiver-operating-characteristic-roc" class="section level2 unnumbered">
 <h2>Receiver Operating Characteristic (ROC)</h2>
@@ -1102,7 +1102,12 @@ All <span class="math inline">\(21\)</span> drug combinations from the <a href="
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> <span class="fu">paste</span>(<span class="fu">round</span>(res_ss_ew<span class="sc">$</span>AUC, <span class="at">digits =</span> <span class="dv">2</span>), <span class="st">&quot;Calibrated&quot;</span>), <span class="at">cex =</span> <span class="fl">1.3</span>)</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">lwd =</span> <span class="fl">0.5</span>)</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&#39;lightgrey&#39;</span>, <span class="at">lty =</span> <span class="st">&#39;dotdash&#39;</span>, <span class="at">lwd =</span> <span class="fl">1.2</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/roc-res-1.png" width="672" /></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:roc-res"></span>
+<img src="_main_files/figure-html/roc-res-1.png" alt="ROC curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)" width="1500" />
+<p class="caption">
+Figure 1: ROC curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)
+</p>
+</div>
 </div>
 <div id="precision-recall-pr" class="section level2 unnumbered">
 <h2>Precision-Recall (PR)</h2>
@@ -1116,10 +1121,15 @@ All <span class="math inline">\(21\)</span> drug combinations from the <a href="
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pr_ss_hsa, <span class="at">main =</span> <span class="st">&#39;PR curve, Ensemble-wise synergies (HSA)&#39;</span>, </span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">auc.main =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> my_palette[<span class="dv">1</span>], <span class="at">rand.plot =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="at">title =</span> <span class="st">&#39;AUC&#39;</span>, <span class="at">col =</span> my_palette[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">1.3</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="at">title =</span> <span class="st">&#39;AUC&#39;</span>, <span class="at">col =</span> my_palette[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">pch =</span> <span class="dv">19</span>,</span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend =</span> <span class="fu">paste</span>(<span class="fu">round</span>(pr_ss_hsa<span class="sc">$</span>auc.davis.goadrich, <span class="at">digits =</span> <span class="dv">2</span>), <span class="st">&quot;Calibrated&quot;</span>))</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">lwd =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/pr-res-1.png" width="672" /></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pr-res"></span>
+<img src="_main_files/figure-html/pr-res-1.png" alt="PR curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)" width="1500" />
+<p class="caption">
+Figure 2: PR curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)
+</p>
+</div>
 </div>
 </div>
 <div id="normalization" class="section level1 unnumbered">
@@ -1144,30 +1154,31 @@ Package version:
   assertthat_0.2.1    base64enc_0.1.3     bit_4.0.4          
   bit64_4.0.5         bookdown_0.24       bslib_0.3.1        
   Ckmeans.1d.dp_4.3.3 cli_3.0.1           clipr_0.7.1        
-  compiler_3.6.3      cpp11_0.4.0         crayon_1.4.1       
-  crosstalk_1.1.1     DBI_1.1.1           digest_0.6.28      
-  dplyr_1.0.7         DT_0.19             ellipsis_0.3.2     
-  emba_0.1.8          evaluate_0.14       fansi_0.5.0        
-  fastmap_1.1.0       fs_1.5.0            generics_0.1.0     
-  glue_1.4.2          graphics_3.6.3      grDevices_3.6.3    
-  grid_3.6.3          highr_0.9           hms_1.1.1          
-  htmltools_0.5.2     htmlwidgets_1.5.4   igraph_1.2.6       
-  jquerylib_0.1.4     jsonlite_1.7.2      knitr_1.36         
-  later_1.3.0         lattice_0.20.45     lazyeval_0.2.2     
-  lifecycle_1.0.1     magrittr_2.0.1      Matrix_1.3.4       
-  methods_3.6.3       parallel_3.6.3      pillar_1.6.3       
-  pkgconfig_2.0.3     prettyunits_1.1.1   progress_1.2.2     
-  promises_1.2.0.1    PRROC_1.3.1         purrr_0.3.4        
-  R6_2.5.1            rappdirs_0.3.3      rbibutils_2.2.3    
-  RColorBrewer_1.1-2  Rcpp_1.0.7          Rdpack_2.1.2       
-  readr_2.0.2         rje_1.10.16         rlang_0.4.11       
-  rmarkdown_2.11      rstudioapi_0.13     sass_0.4.0         
-  stats_3.6.3         stringi_1.7.5       stringr_1.4.0      
-  tibble_3.1.5        tidyr_1.1.4         tidyselect_1.1.1   
-  tinytex_0.34        tools_3.6.3         tzdb_0.1.2         
-  usefun_0.4.8        utf8_1.2.2          utils_3.6.3        
-  vctrs_0.3.8         visNetwork_2.1.0    vroom_1.5.5        
-  withr_2.4.2         xfun_0.26           yaml_2.2.1         </code></pre>
+  codetools_0.2-18    compiler_3.6.3      cpp11_0.4.0        
+  crayon_1.4.1        crosstalk_1.1.1     DBI_1.1.1          
+  digest_0.6.28       dplyr_1.0.7         DT_0.19            
+  ellipsis_0.3.2      emba_0.1.8          evaluate_0.14      
+  fansi_0.5.0         fastmap_1.1.0       fs_1.5.0           
+  generics_0.1.0      glue_1.4.2          graphics_3.6.3     
+  grDevices_3.6.3     grid_3.6.3          highr_0.9          
+  hms_1.1.1           htmltools_0.5.2     htmlwidgets_1.5.4  
+  igraph_1.2.6        jquerylib_0.1.4     jsonlite_1.7.2     
+  knitr_1.36          later_1.3.0         lattice_0.20.45    
+  lazyeval_0.2.2      lifecycle_1.0.1     magrittr_2.0.1     
+  Matrix_1.3.4        methods_3.6.3       parallel_3.6.3     
+  pillar_1.6.3        pkgconfig_2.0.3     prettyunits_1.1.1  
+  progress_1.2.2      promises_1.2.0.1    PRROC_1.3.1        
+  purrr_0.3.4         R6_2.5.1            rappdirs_0.3.3     
+  rbibutils_2.2.3     RColorBrewer_1.1-2  Rcpp_1.0.7         
+  Rdpack_2.1.2        readr_2.0.2         rje_1.10.16        
+  rlang_0.4.11        rmarkdown_2.11      rstudioapi_0.13    
+  sass_0.4.0          stats_3.6.3         stringi_1.7.5      
+  stringr_1.4.0       tibble_3.1.5        tidyr_1.1.4        
+  tidyselect_1.1.1    tinytex_0.34        tools_3.6.3        
+  tzdb_0.1.2          usefun_0.4.8        utf8_1.2.2         
+  utils_3.6.3         vctrs_0.3.8         visNetwork_2.1.0   
+  vroom_1.5.5         withr_2.4.2         xfun_0.26          
+  yaml_2.2.1         </code></pre>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>
