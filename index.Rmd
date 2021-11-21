@@ -107,17 +107,18 @@ The most significant outputs in the [results directory](https://github.com/drugl
 
 ## How are predictions calculated? {-}
 
-Let's look at an example: we see that `drabme` [has calculated](https://github.com/druglogics/synergy-tutorial/blob/main/ags_cascade_1.0_20211121_150114/ags_cascade_1.0_ensemblewise_synergies.tab#L11) a synergy score equal to $\approx -0.943$ for the combination `PD-AK` (MEK and AKT inhibitor).
+Let's look at an example: drabme [has calculated](https://github.com/druglogics/synergy-tutorial/blob/main/ags_cascade_1.0_20211121_150114/ags_cascade_1.0_ensemblewise_synergies.tab#L11) a synergy score equal to $\approx -0.943$ for the combination `PD-AK` (MEK and AKT inhibitor).
 
-Drabme used gitsbe's $150$ output Boolean models and perturbed them first with the single drug `PD` (changing the equation of its respective target to equal $0$, i.e. `MEK_f = 0`).
+Drabme used gitsbe's $150$ output Boolean models and perturbed them first with the single drug `PD` (changing the equation of the respective target to equal $0$, i.e. `MEK_f = 0`).
 Then it calculated all the models' attractors.
-The ensemble of models that had at leats one attractor were able to provide an [output response](https://druglogics.github.io/druglogics-doc/modeloutputs.html) each, from which drabme calculates the ensemble's average response to the `PD` drug.
+The ensemble of models that had at least one attractor were able to provide an [output response](https://druglogics.github.io/druglogics-doc/modeloutputs.html) each, from which drabme calculates the ensemble's average response to the `PD` drug.
 Same procedure is followed for the `AK` drug: changing its target's equation appropriately (`AKT_f = 0`) in all $150$ models, calculating their attractors and using only the models that had at least one attractor to calculate the ensemble's average response to drug `PD`.
 So we are left with two average single-drug response values, from which we choose as a *reference value* (according to the HSA model we used) **the more negative of the two** (as the values represent cell growth output).
 
 Drabme repeats the previous process by now **changing both equations** in all $150$ models, computing their attractors and finding the ensemble's average growth output response for the `PD-AK` combination.
 If this combination value is *lower than the reference value*, the difference is outputted in the ensemble synergies output file.
 For our particular case, the difference of the combination's `PK-AD` average response to the minimum of the single-drug average responses in the $150$ model ensemble, is equal to $\approx -0.943$.
+Since this value is the lowest in the output [ensemble-wise synergies file](https://github.com/druglogics/synergy-tutorial/blob/main/ags_cascade_1.0_20211121_150114/ags_cascade_1.0_ensemblewise_synergies.tab), `PK-AD` is the most synergistic drug combination out of our simulations.
 
 # Read Prediction Results {-}
 
