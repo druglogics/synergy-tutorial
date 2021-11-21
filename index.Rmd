@@ -122,7 +122,7 @@ Since this value is the lowest in the output [ensemble-wise synergies file](http
 
 # Visualize Prediction Performance {-}
 
-**How good were our output synergy predictions?**
+**How good were drabme's synergy predictions?**
 
 This is a standard binary classification problem (synergy or no synergy, varying a threshold defining how stringent is our definition of synergy) and to properly assess our algorithm's performance we need to compare our results with a true set of drug synergies.
 All $21$ drug combinations from the [drugpanel file](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/drugpanel) were experimentally tested in [@Flobak2015], producing a set of $4$ gold standard synergies:
@@ -168,8 +168,8 @@ DT::datatable(data = pred_hsa, options =
 
 ## Receiver Operating Characteristic (ROC) {-}
 
-We use the `get_roc_stats()` function from the `usefun` R package [@R-usefun]):
-```{r roc-res, class.source = 'fold-show', fig.width=5, fig.height=5, dpi=300, cache=TRUE, fig.cap='ROC curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)', fig.align='center'}
+We use the `get_roc_stats()` function from the `usefun` R package [@R-usefun]:
+```{r roc-res, fig.align='center', fig.width=5, fig.height=5, dpi=300, fig.cap='ROC curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)', class.source = 'fold-show'}
 # Get ROC statistics (`res_ss_ew$AUC` holds the ROC AUC)
 res_ss_ew = usefun::get_roc_stats(df = pred_hsa, pred_col = "ss_score", label_col = "observed")
 
@@ -188,7 +188,7 @@ abline(a = 0, b = 1, col = 'lightgrey', lty = 'dotdash', lwd = 1.2)
 ## Precision-Recall (PR) {-}
 
 We use the `pr.curve()` function from the `PRROC` package [@Grau2015]:
-```{r pr-res, class.source = 'fold-show', fig.width=5, fig.height=5, dpi=300, cache=TRUE, fig.cap='PR curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)', fig.align='center'}
+```{r pr-res, fig.align='center', fig.width=5, fig.height=5, dpi=300, fig.cap='PR curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)', class.source = 'fold-show'}
 # NOTE: PRROC considers by default that larger prediction values indicate the 
 # positive class labeling. For us, the synergy scores belonging to the positive 
 # or synergy class (observed = 1) are the lower ones, so we need to
