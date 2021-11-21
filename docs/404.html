@@ -896,13 +896,14 @@ div.csl-indent {
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path=""><a href="#intro"><i class="fa fa-check"></i>Intro</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#install"><i class="fa fa-check"></i>Install</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#run-cascade-1.0-example"><i class="fa fa-check"></i>Run CASCADE 1.0 example</a>
+<li class="chapter" data-level="" data-path=""><a href="#run-cascade-1.0-example"><i class="fa fa-check"></i>Run CASCADE 1.0 Example</a>
 <ul>
 <li class="chapter" data-level="" data-path=""><a href="#inputs"><i class="fa fa-check"></i>Inputs</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#outputs"><i class="fa fa-check"></i>Outputs</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#how-are-predictions-calculated"><i class="fa fa-check"></i>How are predictions calculated?</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#get-predictions"><i class="fa fa-check"></i>Get predictions</a></li>
-<li class="chapter" data-level="" data-path=""><a href="#visualize-performance-roc-pr"><i class="fa fa-check"></i>Visualize performance (ROC, PR)</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#read-prediction-results"><i class="fa fa-check"></i>Read Prediction Results</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#visualize-performance-roc-pr"><i class="fa fa-check"></i>Visualize Performance (ROC, PR)</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#miscellanious"><i class="fa fa-check"></i>Miscellanious</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#r-session-info"><i class="fa fa-check"></i>R session info</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#references"><i class="fa fa-check"></i>References</a></li>
@@ -992,6 +993,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

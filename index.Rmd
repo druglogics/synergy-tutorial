@@ -32,7 +32,7 @@ There are **two ways** to install `druglogics-synergy`.
 1. **The easiest option** is to download the latest released package from GitHub: https://github.com/druglogics/druglogics-synergy/packages/.
 The file of interest is `synergy-1.2.1-jar-with-dependencies.jar`, which includes all dependencies and does not require any manual installation whatsoever.
 
-2. **The other option** is to clone the repositories ^[Sorry, but due to GitHub not allowing users to download a public package without a token, you have to install each dependency repository (gitsbe, drabme) separately!] and install them manually using Maven:
+2. **The other option** is to clone the repositories ^[Due to GitHub's security policies, not allowing users to download a public package without a PAT (Personal Access Token) as of November 2021, you have to install each dependency repository (gitsbe, drabme) separately.] and install them manually using Maven:
 
 ```
 git clone https://github.com/druglogics/gitsbe.git
@@ -59,21 +59,26 @@ After executing the above commands, the `synergy-1.2.1-jar-with-dependencies.jar
 Even if you choose the 1st option, make sure you clone the `druglogics-synergy` repo and put the `synergy-1.2.1-jar-with-dependencies.jar` file inside the `druglogics-synergy/target` directory (as `mvn clean install` command does) to be inline with the next instructions in this tutorial.
 :::
 
-# Run CASCADE 1.0 example {-}
+# Run CASCADE 1.0 Example {-}
 
 We are going to use the [`ags_cascade_1.0`](https://github.com/druglogics/druglogics-synergy/tree/v1.2.1/ags_cascade_1.0) directory that resides in the `druglogics-synergy` directory as an input to the `Launcher` class to run the CASCADE 1.0 example.
 
 The command to execute from the root of the `druglogics-synergy` directory is the following:
 
 ```
-java -cp target/synergy-1.2.1-jar-with-dependencies.jar eu.druglogics.synergy.Launcher --inputDir=ags_cascade_1.0/
+java -cp target/synergy-1.2.1-jar-with-dependencies.jar eu.druglogics.synergy.Launcher --inputDir=ags_cascade_1.0
 ```
 
-Given that the simulations use all available cores, the above command shouldn't take more than 30sec to 1min to finish on a decent computer.
+The above command should create a new directory inside `ags_cascade_1.0` that includes the output result files.
+Given that the simulations use all available cores, it shouldn't take more than **30sec to 1min** to complete the execution on a modern computer.
+
+:::{.note}
+For the rest of this tutorial we are going to use the output results produced from the execution of the above command, please refer to [this directory](https://github.com/druglogics/synergy-tutorial/tree/main/ags_cascade_1.0_20211121_150114).
+:::
 
 ## Inputs {-}
 
-A brief description of the input files included in the [`ags_cascade_1.0`](https://github.com/druglogics/druglogics-synergy/tree/v1.2.1/ags_cascade_1.0) directory are:
+A brief description of the input files included in the [`ags_cascade_1.0`](https://github.com/druglogics/druglogics-synergy/tree/v1.2.1/ags_cascade_1.0) directory follows:
 
 1. [`network.sif`](https://github.com/druglogics/druglogics-synergy/tree/v1.2.1/ags_cascade_1.0/network.sif): a single-interactions network file in Cytoscape's .sif tab-delimited format.
 This file defines the CASCADE 1.0 topology.
@@ -86,16 +91,37 @@ Here, we define 3 nodes that signal cell proliferation when active (`RSK_f`, `MY
 More info can be found [here](https://druglogics.github.io/druglogics-doc/drug-panel.html).
 5. [`config`](https://github.com/druglogics/druglogics-synergy/tree/v1.2.1/ags_cascade_1.0/config): configuration file that defines several parameters used by gitsbe and drabme.
 Apart from the short description for each parameter provided in the `config` file, there is a more complete documentation of each option [available here](https://druglogics.github.io/druglogics-doc/gitsbe-config.html).
-    - The most important options for [gitsbe](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/config#L27) are the tool used to calculate the models' attractors (bioLQM [@Naldi2018]), the number of simulations (50), number of generations per simulation (20), number of models per generation (20), number of best-fit models to save after each simulation is finished (3) and the type of [model mutations](https://druglogics.github.io/druglogics-doc/gitsbe-config.html#mutation-types) used (*balance* or *link operator* mutations).
-    - For [drabme](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/config#L96), the two most important configuration parameters are the maximum drug set size to test (2, i.e. up to drug pairs) and the method used for the calculation of drug synergies (we use HSA [@gaddum1940pharmacology] in the `config` file, but also Bliss [@Bliss1939] is available).
+    - The most important options for [gitsbe](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/config#L27) are the tool used to calculate the models' attractors (bioLQM, see [@Naldi2018]), **the number of simulations** $(50)$, number of generations per simulation ($20$), number of models per generation $(20)$, **number of best-fit models to save** after each simulation is finished $(3)$ and the type of [model mutations](https://druglogics.github.io/druglogics-doc/gitsbe-config.html#mutation-types) used (here we use *balance* or *link operator* mutations).
+    - For [drabme](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/config#L96), the two most important configuration parameters are the maximum drug set size to test ($2$, i.e. up to drug pairs) and the method used for the calculation of drug synergies (we use HSA [@gaddum1940pharmacology] in the `config` file, but also Bliss [@Bliss1939] is available).
 
 ## Outputs {-}
 
+The most significant outputs in the [results directory](https://github.com/druglogics/synergy-tutorial/tree/main/ags_cascade_1.0_20211121_150114) are:
 
+- **Gitsbe-specific**:
+    - A [`models`](https://github.com/druglogics/synergy-tutorial/tree/main/ags_cascade_1.0_20211121_150114/models) directory with files in `.gitsbe` format ^[You can configure gitsbe to export the resulting Boolean models to more standard formats, see the respective [option here](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/config#L88)], representing the best-fit boolean models out of the simulations of the genetic algorithm.
+    Here, since we configured to have $50$ simulations and save the best $3$ models out of each simulation, we end up with a total of $150$ models after gitsbe finishes its execution.
+- **Drabme-specific**:
+  - A [`ensemble-wise synergies file`](https://github.com/druglogics/synergy-tutorial/blob/main/ags_cascade_1.0_20211121_150114/ags_cascade_1.0_ensemblewise_synergies.tab), providing the synergy predictions based on gitsbe's models.
+  For every drug combination tested (we have $7$ drugs in the [drugpanel file](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/drugpanel), so a total of ${7\choose2} = 21$ drug pairs are tested), drabme calculates a synergy score indicating how synergistic that combination was (more negative means more synergistic), based on the HSA synergy metric.
 
-# Get predictions {-}
+## How are predictions calculated? {-}
 
-# Visualize performance (ROC, PR) {-}
+Let's look at an example: we see that `drabme` [has calculated](https://github.com/druglogics/synergy-tutorial/blob/main/ags_cascade_1.0_20211121_150114/ags_cascade_1.0_ensemblewise_synergies.tab#L11) a synergy score equal to $\approx -0.943$ for the combination `PD-AK` (MEK and AKT inhibitor).
+
+Drabme used gitsbe's $150$ output Boolean models and perturbed them first with the single drug `PD` (changing the equation of its respective target to equal $0$, i.e. `MEK_f = 0`).
+Then it calculated all the models' attractors.
+The ensemble of models that had at leats one attractor were able to provide an [output response](https://druglogics.github.io/druglogics-doc/modeloutputs.html) each, from which drabme calculates the ensemble's average response to the `PD` drug.
+Same procedure is followed for the `AK` drug: changing its target's equation appropriately (`AKT_f = 0`) in all $150$ models, calculating their attractors and using only the models that had at least one attractor to calculate the ensemble's average response to drug `PD`.
+So we are left with two average single-drug response values, from which we choose as a *reference value* (according to the HSA model we used) **the more negative of the two** (as the values represent cell growth output).
+
+Drabme repeats the previous process by now **changing both equations** in all $150$ models, computing their attractors and finding the ensemble's average growth output response for the `PD-AK` combination.
+If this combination value is *lower than the reference value*, the difference is outputted in the ensemble synergies output file.
+For our particular case, the difference of the combination's `PK-AD` average response to the minimum of the single-drug average responses in the $150$ model ensemble, is equal to $\approx -0.943$.
+
+# Read Prediction Results {-}
+
+# Visualize Performance (ROC, PR) {-}
 
 # Miscellanious {-}
 
