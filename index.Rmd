@@ -120,11 +120,90 @@ If this combination value is *lower than the reference value*, the difference is
 For our particular case, the difference of the combination's `PK-AD` average response to the minimum of the single-drug average responses in the $150$ model ensemble, is equal to $\approx -0.943$.
 Since this value is the lowest in the output [ensemble-wise synergies file](https://github.com/druglogics/synergy-tutorial/blob/main/ags_cascade_1.0_20211121_150114/ags_cascade_1.0_ensemblewise_synergies.tab), `PK-AD` is the most synergistic drug combination out of our simulations.
 
-# Read Prediction Results {-}
+# Visualize Prediction Performance {-}
 
-# Visualize Performance (ROC, PR) {-}
+**How good were our output synergy predictions?**
 
-# Miscellanious {-}
+This is a standard binary classification problem (synergy or no synergy, varying a threshold defining how stringent is our definition of synergy) and to properly assess our algorithm's performance we need to compare our results with a true set of drug synergies.
+All $21$ drug combinations from the [drugpanel file](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/drugpanel) were experimentally tested in [@Flobak2015], producing a set of $4$ gold standard synergies:
+
+:::{.green-box}
+`PI-PD`, `PI-5Z`, `PD-AK`, `AK-5Z`
+:::
+
+## Read Output Results {-}
+
+Load the appropriate libraries:
+```{r load-lib, class.source = 'fold-show'}
+suppressMessages(library(dplyr))
+library(tibble)
+library(emba)
+library(usefun)
+library(PRROC)
+library(DT)
+```
+
+Read the data using the `emba` library [@Zobolas2020]:
+```{r read-data, class.source = 'fold-show'}
+# Read ensemble-wise synergies file
+# `ss` => models trained to steady state
+ss_hsa_file = "ags_cascade_1.0_20211121_150114/ags_cascade_1.0_ensemblewise_synergies.tab"
+ss_hsa_ensemblewise_synergies = emba::get_synergy_scores(ss_hsa_file)
+
+# Read observed synergies file
+observed_synergies_file = 'observed_synergies_cascade_1.0'
+observed_synergies = emba::get_observed_synergies(observed_synergies_file)
+# 1 (positive/observed synergy) or 0 (negative/not observed) for all tested drug combinations
+observed = sapply(ss_hsa_ensemblewise_synergies$perturbation %in% observed_synergies, as.integer)
+
+# Make a data table
+pred_hsa = dplyr::bind_cols(ss_hsa_ensemblewise_synergies %>% rename(ss_score = score),
+  tibble::as_tibble_col(observed, column_name = "observed"))
+
+# Visualize our prediction results in a table format
+DT::datatable(data = pred_hsa, options = 
+  list(pageLength = 7, lengthMenu = c(7, 14, 21), searching = FALSE)) %>% 
+  DT::formatRound(columns = 2, digits = 3)
+```
+
+## Receiver Operating Characteristic (ROC) {-}
+
+We use the `get_roc_stats()` function from the `usefun` R package [@R-usefun]):
+```{r roc-res, class.source = 'fold-show'}
+# Get ROC statistics (`res_ss_ew$AUC` holds the ROC AUC)
+res_ss_ew = usefun::get_roc_stats(df = pred_hsa, pred_col = "ss_score", label_col = "observed")
+
+# Plot ROC
+my_palette = RColorBrewer::brewer.pal(n = 9, name = "Set1")
+
+plot(x = res_ss_ew$roc_stats$FPR, y = res_ss_ew$roc_stats$TPR,
+  type = 'l', lwd = 3, col = my_palette[1], main = 'ROC curve, Ensemble-wise synergies (HSA)',
+  xlab = 'False Positive Rate (FPR)', ylab = 'True Positive Rate (TPR)')
+legend('bottomright', title = 'AUC', col = my_palette[1:2], pch = 19,
+  legend = paste(round(res_ss_ew$AUC, digits = 2), "Calibrated"), cex = 1.3)
+grid(lwd = 0.5)
+abline(a = 0, b = 1, col = 'lightgrey', lty = 'dotdash', lwd = 1.2)
+```
+
+## Precision-Recall (PR) {-}
+
+We use the `pr.curve()` function from the `PRROC` package [@Grau2015]:
+```{r pr-res, class.source = 'fold-show'}
+# NOTE: PRROC considers by default that larger prediction values indicate the 
+# positive class labeling. For us, the synergy scores belonging to the positive 
+# or synergy class (observed = 1) are the lower ones, so we need to
+# reverse the scores to correctly calculate the PR curve
+pr_ss_hsa = PRROC::pr.curve(scores.class0 = pred_hsa %>% pull(ss_score) %>% (function(x) {-x}), 
+  weights.class0 = pred_hsa %>% pull(observed), curve = TRUE, rand.compute = TRUE)
+
+plot(pr_ss_hsa, main = 'PR curve, Ensemble-wise synergies (HSA)', 
+  auc.main = FALSE, color = my_palette[1], rand.plot = TRUE)
+legend('topright', title = 'AUC', col = my_palette[1:2], pch = 19, cex = 1.3,
+  legend = paste(round(pr_ss_hsa$auc.davis.goadrich, digits = 2), "Calibrated"))
+grid(lwd = 0.5)
+```
+
+# Normalization {-}
 
 # R session info {-}
 
