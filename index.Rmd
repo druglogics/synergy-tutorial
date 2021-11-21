@@ -169,7 +169,7 @@ DT::datatable(data = pred_hsa, options =
 ## Receiver Operating Characteristic (ROC) {-}
 
 We use the `get_roc_stats()` function from the `usefun` R package [@R-usefun]):
-```{r roc-res, class.source = 'fold-show'}
+```{r roc-res, class.source = 'fold-show', fig.width=5, fig.height=5, dpi=300, cache=TRUE, fig.cap='ROC curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)', fig.align='center'}
 # Get ROC statistics (`res_ss_ew$AUC` holds the ROC AUC)
 res_ss_ew = usefun::get_roc_stats(df = pred_hsa, pred_col = "ss_score", label_col = "observed")
 
@@ -188,7 +188,7 @@ abline(a = 0, b = 1, col = 'lightgrey', lty = 'dotdash', lwd = 1.2)
 ## Precision-Recall (PR) {-}
 
 We use the `pr.curve()` function from the `PRROC` package [@Grau2015]:
-```{r pr-res, class.source = 'fold-show'}
+```{r pr-res, class.source = 'fold-show', fig.width=5, fig.height=5, dpi=300, cache=TRUE, fig.cap='PR curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)', fig.align='center'}
 # NOTE: PRROC considers by default that larger prediction values indicate the 
 # positive class labeling. For us, the synergy scores belonging to the positive 
 # or synergy class (observed = 1) are the lower ones, so we need to
@@ -198,7 +198,7 @@ pr_ss_hsa = PRROC::pr.curve(scores.class0 = pred_hsa %>% pull(ss_score) %>% (fun
 
 plot(pr_ss_hsa, main = 'PR curve, Ensemble-wise synergies (HSA)', 
   auc.main = FALSE, color = my_palette[1], rand.plot = TRUE)
-legend('topright', title = 'AUC', col = my_palette[1:2], pch = 19, cex = 1.3,
+legend('topright', title = 'AUC', col = my_palette[1:2], pch = 19,
   legend = paste(round(pr_ss_hsa$auc.davis.goadrich, digits = 2), "Calibrated"))
 grid(lwd = 0.5)
 ```
