@@ -172,7 +172,7 @@ pred_hsa = dplyr::bind_cols(ss_hsa_ensemblewise_synergies %>% rename(ss_score = 
 :::{#ss-pred-tbl}
 Visualize the prediction results in a table format:
 :::
-```{r ss-pred-res, class.source = 'fold-show'}
+```{r ss-pred-res}
 DT::datatable(data = pred_hsa, options = 
   list(pageLength = 7, lengthMenu = c(7, 14, 21), searching = FALSE,
     order = list(list(2, 'asc')))) %>%
