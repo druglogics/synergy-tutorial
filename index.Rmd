@@ -167,11 +167,18 @@ observed = sapply(ss_hsa_ensemblewise_synergies$perturbation %in% observed_syner
 # Make a data table
 pred_hsa = dplyr::bind_cols(ss_hsa_ensemblewise_synergies %>% rename(ss_score = score),
   tibble::as_tibble_col(observed, column_name = "observed"))
+```
 
-# Visualize our prediction results in a table format
+:::{#ss-pred-tbl}
+Visualize the prediction results in a table format:
+:::
+```{r ss-pred-res, class.source = 'fold-show'}
 DT::datatable(data = pred_hsa, options = 
-  list(pageLength = 7, lengthMenu = c(7, 14, 21), searching = FALSE)) %>% 
-  DT::formatRound(columns = 2, digits = 3)
+  list(pageLength = 7, lengthMenu = c(7, 14, 21), searching = FALSE,
+    order = list(list(2, 'asc')))) %>%
+  DT::formatRound(columns = 2, digits = 5) %>%
+  DT::formatStyle(columns = 'observed',
+    backgroundColor = styleEqual(c(0, 1), c('white', 'yellow')))
 ```
 
 ## Receiver Operating Characteristic (ROC) {-}
