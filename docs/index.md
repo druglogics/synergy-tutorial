@@ -122,7 +122,7 @@ Since this value is the lowest in the output [ensemble-wise synergies file](http
 
 # Visualize Prediction Performance {-}
 
-In this section we try to assess the quality of drabme's synergy predictions.
+In this section we assess the quality of drabme's synergy predictions by plotting ROC and PR curves.
 
 ## Observed synergies for CASCADE 1.0 {-}
 
@@ -136,7 +136,7 @@ All $21$ drug combinations from the [drugpanel file](https://github.com/druglogi
 We will use some `R` code to parse drabme's output prediction scores and visualize our pipeline's synergy prediction performance using the **Receiver Operating Characteristic (ROC)** and the **Precision-Recall (PR)** curves as well as the **Area Under the Curve (AUC)**.
 The below code should be run from the root of the [`synergy-tutorial`](https://github.com/druglogics/synergy-tutorial) repository.
 
-We also include a separate `R` [script](https://github.com/druglogics/synergy-tutorial/blob/main/code.R) with all the code in the below code blocks for ease of use.
+We also include a separate [R script](https://github.com/druglogics/synergy-tutorial/blob/main/code.R) with all the code in the below code blocks for ease of use.
 :::
 
 ## Read Output Results {-}
@@ -169,16 +169,24 @@ observed = sapply(ss_hsa_ensemblewise_synergies$perturbation %in% observed_syner
 # Make a data table
 pred_hsa = dplyr::bind_cols(ss_hsa_ensemblewise_synergies %>% rename(ss_score = score),
   tibble::as_tibble_col(observed, column_name = "observed"))
+```
 
-# Visualize our prediction results in a table format
+:::{#ss-pred-tbl}
+Visualize the prediction results in a table format:
+:::
+
+```{.r .fold-show}
 DT::datatable(data = pred_hsa, options = 
-  list(pageLength = 7, lengthMenu = c(7, 14, 21), searching = FALSE)) %>% 
-  DT::formatRound(columns = 2, digits = 3)
+  list(pageLength = 7, lengthMenu = c(7, 14, 21), searching = FALSE,
+    order = list(list(2, 'asc')))) %>%
+  DT::formatRound(columns = 2, digits = 5) %>%
+  DT::formatStyle(columns = 'observed',
+    backgroundColor = styleEqual(c(0, 1), c('white', 'yellow')))
 ```
 
 ```{=html}
-<div id="htmlwidget-ab9dc19ef4803a8df24e" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ab9dc19ef4803a8df24e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],["PI-PD","PI-CT","PI-BI","PI-PK","PI-AK","PI-5Z","PD-CT","PD-BI","PD-PK","PD-AK","PD-5Z","CT-BI","CT-PK","CT-AK","CT-5Z","BI-PK","BI-AK","BI-5Z","PK-AK","PK-5Z","AK-5Z"],[-0.633699633699634,0,-0.204448329448329,-0.224852862493312,-0.0333288172334372,-0.313618771165941,0,-0.325976107226107,0,-0.942822870851659,0,0,0,0,0,-0.564138576779026,-0.165625813166797,0,-0.518270229440091,0,-0.462540217557837],[1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>perturbation<\/th>\n      <th>ss_score<\/th>\n      <th>observed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"lengthMenu":[7,14,21],"searching":false,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render"],"jsHooks":[]}</script>
+<div id="htmlwidget-d7141348299b765bf567" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d7141348299b765bf567">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],["PI-PD","PI-CT","PI-BI","PI-PK","PI-AK","PI-5Z","PD-CT","PD-BI","PD-PK","PD-AK","PD-5Z","CT-BI","CT-PK","CT-AK","CT-5Z","BI-PK","BI-AK","BI-5Z","PK-AK","PK-5Z","AK-5Z"],[-0.633699633699634,0,-0.204448329448329,-0.224852862493312,-0.0333288172334372,-0.313618771165941,0,-0.325976107226107,0,-0.942822870851659,0,0,0,0,0,-0.564138576779026,-0.165625813166797,0,-0.518270229440091,0,-0.462540217557837],[1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>perturbation<\/th>\n      <th>ss_score<\/th>\n      <th>observed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"lengthMenu":[7,14,21],"searching":false,"order":[[2,"asc"]],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':value == 0 ? \"white\" : value == 1 ? \"yellow\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.rowCallback"],"jsHooks":[]}</script>
 ```
 
 ## Receiver Operating Characteristic (ROC) {-}
@@ -202,7 +210,7 @@ abline(a = 0, b = 1, col = 'lightgrey', lty = 'dotdash', lwd = 1.2)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/roc-res-1.png" alt="ROC curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)" width="1500" />
+<img src="index_files/figure-html/roc-res-1.png" alt="ROC curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)" width="65%" />
 <p class="caption">(\#fig:roc-res)ROC curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)</p>
 </div>
 
@@ -226,7 +234,7 @@ grid(lwd = 0.5)
 ```
 
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/pr-res-1.png" alt="PR curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)" width="1500" />
+<img src="index_files/figure-html/pr-res-1.png" alt="PR curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)" width="65%" />
 <p class="caption">(\#fig:pr-res)PR curve (CASCADE 1.0, HSA synergy method, 150 models calibrated to the AGS steady state)</p>
 </div>
 
