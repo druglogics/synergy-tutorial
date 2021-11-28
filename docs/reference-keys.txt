@@ -1,2 +1,3 @@
 fig:roc-res
 fig:pr-res
+fig:norm-perf-res
