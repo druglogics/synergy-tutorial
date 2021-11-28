@@ -83,7 +83,7 @@ A brief description of the input files included in the [`ags_cascade_1.0`](https
 1. [`network.sif`](https://github.com/druglogics/druglogics-synergy/tree/v1.2.1/ags_cascade_1.0/network.sif): a single-interactions network file in Cytoscape's .sif tab-delimited format.
 This file defines the CASCADE 1.0 topology.
 2. [`training`](https://github.com/druglogics/druglogics-synergy/tree/v1.2.1/ags_cascade_1.0/training): this file has the training data for gitsbe's algorithm in one of the formats specified in the respective [documentation](https://druglogics.github.io/druglogics-doc/training-data.html).
-Here, we train to an unperturbed condition, with a steady state observation response as curated from many publications for the AGS cell line [@Flobak2015].
+Here, **we train to an unperturbed condition, with a steady state observation response** as curated from many publications for the AGS cell line [@Flobak2015].
 3. [`modeloutputs`](https://github.com/druglogics/druglogics-synergy/tree/v1.2.1/ags_cascade_1.0/modeloutputs): this is a file that is used to calculate the output growth response of a Boolean model after its attractors are computed.
 See more information in the respective [documentation](https://druglogics.github.io/druglogics-doc/modeloutputs.html).
 Here, we define 3 nodes that signal cell proliferation when active (`RSK_f`, `MYC` and `TCF7_f`) and 3 that signal apoptosis (`CASP8`, `CASP9` and `FOXO_f`).
