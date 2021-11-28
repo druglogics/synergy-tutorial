@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gxl SYSTEM "http://gin.univ-mrs.fr/GINsim/GINML_2_1.dtd">
+<gxl>
+  <graph id="defaultID" class="regulatory" nodeorder="Antisurvival CASP3 FOXO_f Prosurvival CCND1 MYC RAC_f mTORC2_c DVL_f MAP3K4 MAP3K11 MAP2K4 MAP3K7 GRAP2 MAP2K7 JNK_f DUSP1 MAPK14 MAP2K3 MAP3K5 AKT_f TAB_f MSK_f RTPK_f RTPK_g MEK_f SHC1 PTEN GRB2 SOS1 ERK_f KRAS PTPN11 RAF_f RHEB MAP3K8 DUSP6 mTORC1_c GAB_f RSK_f PDPK1 PIK3CA IRS1 S6K_f IKBKB PTEN_g GSK3_f TSC_f TP53 AKT1S1 MDM2 MDM2_g BAX CYCS BCL2 BAD NLK CASP9 CASP8 CFLAR ITCH FZD_f SFRP1 LRP_f DKK_f AXIN1 CK1_f BTRC CTNNB1 CHUK TCF7_f EGR1 DKK_g SFRP1_g NFKB_f LEF MMP_f">
+    <node id="Antisurvival" maxvalue="1">
+      <parameter val="1" idActiveInteractions="FOXO_f:Antisurvival:1"/>
+      <parameter val="1" idActiveInteractions="CASP3:Antisurvival:1"/>
+      <parameter val="1" idActiveInteractions="CASP3:Antisurvival:1 FOXO_f:Antisurvival:1"/>
+    </node>
+    <node id="CASP3" maxvalue="1">
+      <parameter val="1" idActiveInteractions="CASP8:CASP3:1"/>
+      <parameter val="1" idActiveInteractions="CASP9:CASP3:1"/>
+      <parameter val="1" idActiveInteractions="CASP9:CASP3:1 CASP8:CASP3:1"/>
+    </node>
+    <node id="FOXO_f" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="Prosurvival" maxvalue="1">
+      <parameter val="1" idActiveInteractions="MYC:Prosurvival:1"/>
+      <parameter val="1" idActiveInteractions="CCND1:Prosurvival:1"/>
+      <parameter val="1" idActiveInteractions="CCND1:Prosurvival:1 MYC:Prosurvival:1"/>
+    </node>
+    <node id="CCND1" maxvalue="1">
+      <parameter val="1" idActiveInteractions="TCF7_f:CCND1:1"/>
+      <parameter val="1" idActiveInteractions="RSK_f:CCND1:1"/>
+      <parameter val="1" idActiveInteractions="RSK_f:CCND1:1 TCF7_f:CCND1:1"/>
+    </node>
+    <node id="MYC" maxvalue="1">
+      <parameter val="1" idActiveInteractions="TCF7_f:MYC:1"/>
+    </node>
+    <node id="RAC_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="DVL_f:RAC_f:1"/>
+      <parameter val="1" idActiveInteractions="mTORC2_c:RAC_f:1"/>
+      <parameter val="1" idActiveInteractions="mTORC2_c:RAC_f:1 DVL_f:RAC_f:1"/>
+    </node>
+    <node id="mTORC2_c" maxvalue="1">
+      <parameter val="1" idActiveInteractions="TSC_f:mTORC2_c:1"/>
+    </node>
+    <node id="DVL_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="FZD_f:DVL_f:1"/>
+    </node>
+    <node id="MAP3K4" maxvalue="1">
+      <parameter val="1" idActiveInteractions="RAC_f:MAP3K4:1"/>
+    </node>
+    <node id="MAP3K11" maxvalue="1">
+      <parameter val="1" idActiveInteractions="RAC_f:MAP3K11:1"/>
+    </node>
+    <node id="MAP2K4" maxvalue="1">
+      <parameter val="1" idActiveInteractions="GRAP2:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K7:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K7:MAP2K4:1 GRAP2:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K11:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K11:MAP2K4:1 GRAP2:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K11:MAP2K4:1 MAP3K7:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K11:MAP2K4:1 MAP3K7:MAP2K4:1 GRAP2:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K4:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K4:MAP2K4:1 GRAP2:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K4:MAP2K4:1 MAP3K7:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K4:MAP2K4:1 MAP3K7:MAP2K4:1 GRAP2:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K4:MAP2K4:1 MAP3K11:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K4:MAP2K4:1 MAP3K11:MAP2K4:1 GRAP2:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K4:MAP2K4:1 MAP3K11:MAP2K4:1 MAP3K7:MAP2K4:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K4:MAP2K4:1 MAP3K11:MAP2K4:1 MAP3K7:MAP2K4:1 GRAP2:MAP2K4:1"/>
+    </node>
+    <node id="MAP3K7" maxvalue="1">
+      <parameter val="1" idActiveInteractions="TAB_f:MAP3K7:1"/>
+    </node>
+    <node id="GRAP2" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="MAP2K7" maxvalue="1">
+      <parameter val="1" idActiveInteractions="GRAP2:MAP2K7:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K7:MAP2K7:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K7:MAP2K7:1 GRAP2:MAP2K7:1"/>
+    </node>
+    <node id="JNK_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="MAP2K7:JNK_f:1"/>
+      <parameter val="1" idActiveInteractions="MAP2K4:JNK_f:1"/>
+      <parameter val="1" idActiveInteractions="MAP2K4:JNK_f:1 MAP2K7:JNK_f:1"/>
+    </node>
+    <node id="DUSP1" maxvalue="1">
+      <parameter val="1" idActiveInteractions="MSK_f:DUSP1:1"/>
+      <parameter val="1" idActiveInteractions="MAPK14:DUSP1:1"/>
+      <parameter val="1" idActiveInteractions="MAPK14:DUSP1:1 MSK_f:DUSP1:1"/>
+    </node>
+    <node id="MAPK14" maxvalue="1">
+      <parameter val="1" idActiveInteractions="MAP2K3:MAPK14:1"/>
+      <parameter val="1" idActiveInteractions="MAP2K4:MAPK14:1"/>
+      <parameter val="1" idActiveInteractions="MAP2K4:MAPK14:1 MAP2K3:MAPK14:1"/>
+    </node>
+    <node id="MAP2K3" maxvalue="1">
+      <parameter val="1" idActiveInteractions="MAP3K5:MAP2K3:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K7:MAP2K3:1"/>
+      <parameter val="1" idActiveInteractions="MAP3K7:MAP2K3:1 MAP3K5:MAP2K3:1"/>
+    </node>
+    <node id="MAP3K5" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="AKT_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="PDPK1:AKT_f:1"/>
+      <parameter val="1" idActiveInteractions="mTORC2_c:AKT_f:1"/>
+      <parameter val="1" idActiveInteractions="mTORC2_c:AKT_f:1 PDPK1:AKT_f:1"/>
+    </node>
+    <node id="TAB_f" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="MSK_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="ERK_f:MSK_f:1"/>
+      <parameter val="1" idActiveInteractions="MAPK14:MSK_f:1"/>
+      <parameter val="1" idActiveInteractions="MAPK14:MSK_f:1 ERK_f:MSK_f:1"/>
+    </node>
+    <node id="RTPK_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="MMP_f:RTPK_f:1"/>
+      <parameter val="1" idActiveInteractions="RTPK_g:RTPK_f:1"/>
+      <parameter val="1" idActiveInteractions="RTPK_g:RTPK_f:1 MMP_f:RTPK_f:1"/>
+    </node>
+    <node id="RTPK_g" maxvalue="1">
+      <parameter val="1" idActiveInteractions="FOXO_f:RTPK_g:1"/>
+    </node>
+    <node id="MEK_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="MAP3K8:MEK_f:1"/>
+      <parameter val="1" idActiveInteractions="RAF_f:MEK_f:1"/>
+      <parameter val="1" idActiveInteractions="RAF_f:MEK_f:1 MAP3K8:MEK_f:1"/>
+    </node>
+    <node id="SHC1" maxvalue="1">
+      <parameter val="1" idActiveInteractions="RTPK_f:SHC1:1"/>
+    </node>
+    <node id="PTEN" maxvalue="1">
+      <parameter val="1" idActiveInteractions="PTEN_g:PTEN:1"/>
+    </node>
+    <node id="GRB2" maxvalue="1">
+      <parameter val="1" idActiveInteractions="SHC1:GRB2:1"/>
+    </node>
+    <node id="SOS1" maxvalue="1">
+      <parameter val="1" idActiveInteractions="GRB2:SOS1:1"/>
+    </node>
+    <node id="ERK_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="MEK_f:ERK_f:1"/>
+    </node>
+    <node id="KRAS" maxvalue="1">
+      <parameter val="1" idActiveInteractions="PTPN11:KRAS:1"/>
+      <parameter val="1" idActiveInteractions="SOS1:KRAS:1"/>
+      <parameter val="1" idActiveInteractions="SOS1:KRAS:1 PTPN11:KRAS:1"/>
+    </node>
+    <node id="PTPN11" maxvalue="1">
+      <parameter val="1" idActiveInteractions="GAB_f:PTPN11:1"/>
+    </node>
+    <node id="RAF_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="KRAS:RAF_f:1"/>
+    </node>
+    <node id="RHEB" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="MAP3K8" maxvalue="1">
+      <parameter val="1" idActiveInteractions="IKBKB:MAP3K8:1"/>
+    </node>
+    <node id="DUSP6" maxvalue="1">
+      <parameter val="1" idActiveInteractions="mTORC1_c:DUSP6:1"/>
+      <parameter val="1" idActiveInteractions="ERK_f:DUSP6:1"/>
+      <parameter val="1" idActiveInteractions="ERK_f:DUSP6:1 mTORC1_c:DUSP6:1"/>
+    </node>
+    <node id="mTORC1_c" maxvalue="1">
+      <parameter val="1" idActiveInteractions="RSK_f:mTORC1_c:1"/>
+      <parameter val="1" idActiveInteractions="RHEB:mTORC1_c:1"/>
+      <parameter val="1" idActiveInteractions="RHEB:mTORC1_c:1 RSK_f:mTORC1_c:1"/>
+    </node>
+    <node id="GAB_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="GRB2:GAB_f:1"/>
+    </node>
+    <node id="RSK_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="PDPK1:RSK_f:1"/>
+      <parameter val="1" idActiveInteractions="ERK_f:RSK_f:1"/>
+      <parameter val="1" idActiveInteractions="ERK_f:RSK_f:1 PDPK1:RSK_f:1"/>
+    </node>
+    <node id="PDPK1" maxvalue="1">
+      <parameter val="1" idActiveInteractions="PIK3CA:PDPK1:1"/>
+    </node>
+    <node id="PIK3CA" maxvalue="1">
+      <parameter val="1" idActiveInteractions="IRS1:PIK3CA:1"/>
+      <parameter val="1" idActiveInteractions="GAB_f:PIK3CA:1"/>
+      <parameter val="1" idActiveInteractions="GAB_f:PIK3CA:1 IRS1:PIK3CA:1"/>
+      <parameter val="1" idActiveInteractions="KRAS:PIK3CA:1"/>
+      <parameter val="1" idActiveInteractions="KRAS:PIK3CA:1 IRS1:PIK3CA:1"/>
+      <parameter val="1" idActiveInteractions="KRAS:PIK3CA:1 GAB_f:PIK3CA:1"/>
+      <parameter val="1" idActiveInteractions="KRAS:PIK3CA:1 GAB_f:PIK3CA:1 IRS1:PIK3CA:1"/>
+    </node>
+    <node id="IRS1" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="S6K_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="PDPK1:S6K_f:1"/>
+      <parameter val="1" idActiveInteractions="mTORC1_c:S6K_f:1"/>
+      <parameter val="1" idActiveInteractions="mTORC1_c:S6K_f:1 PDPK1:S6K_f:1"/>
+    </node>
+    <node id="IKBKB" maxvalue="1">
+      <parameter val="1" idActiveInteractions="MAP3K7:IKBKB:1"/>
+    </node>
+    <node id="PTEN_g" maxvalue="1">
+      <parameter val="1" idActiveInteractions="EGR1:PTEN_g:1"/>
+    </node>
+    <node id="GSK3_f" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="TSC_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="GSK3_f:TSC_f:1"/>
+    </node>
+    <node id="TP53" maxvalue="1">
+      <parameter val="1" idActiveInteractions="MAPK14:TP53:1"/>
+    </node>
+    <node id="AKT1S1" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="MDM2" maxvalue="1">
+      <parameter val="1" idActiveInteractions="MDM2_g:MDM2:1"/>
+      <parameter val="1" idActiveInteractions="AKT_f:MDM2:1"/>
+      <parameter val="1" idActiveInteractions="AKT_f:MDM2:1 MDM2_g:MDM2:1"/>
+    </node>
+    <node id="MDM2_g" maxvalue="1">
+      <parameter val="1" idActiveInteractions="NFKB_f:MDM2_g:1"/>
+      <parameter val="1" idActiveInteractions="TP53:MDM2_g:1"/>
+      <parameter val="1" idActiveInteractions="TP53:MDM2_g:1 NFKB_f:MDM2_g:1"/>
+    </node>
+    <node id="BAX" maxvalue="1">
+      <parameter val="1" idActiveInteractions="TP53:BAX:1"/>
+    </node>
+    <node id="CYCS" maxvalue="1">
+      <parameter val="1" idActiveInteractions="BAX:CYCS:1"/>
+    </node>
+    <node id="BCL2" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="BAD" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="NLK" maxvalue="1">
+      <parameter val="1" idActiveInteractions="MAP3K7:NLK:1"/>
+    </node>
+    <node id="CASP9" maxvalue="1">
+      <parameter val="1" idActiveInteractions="CYCS:CASP9:1"/>
+    </node>
+    <node id="CASP8" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="CFLAR" maxvalue="1">
+      <parameter val="1" idActiveInteractions="AKT_f:CFLAR:1"/>
+    </node>
+    <node id="ITCH" maxvalue="1">
+      <parameter val="1" idActiveInteractions="JNK_f:ITCH:1"/>
+    </node>
+    <node id="FZD_f" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="SFRP1" maxvalue="1">
+      <parameter val="1" idActiveInteractions="SFRP1_g:SFRP1:1"/>
+    </node>
+    <node id="LRP_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="FZD_f:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="ERK_f:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="ERK_f:LRP_f:1 FZD_f:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="MAPK14:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="MAPK14:LRP_f:1 FZD_f:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="MAPK14:LRP_f:1 ERK_f:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="MAPK14:LRP_f:1 ERK_f:LRP_f:1 FZD_f:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="JNK_f:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="JNK_f:LRP_f:1 FZD_f:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="JNK_f:LRP_f:1 ERK_f:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="JNK_f:LRP_f:1 ERK_f:LRP_f:1 FZD_f:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="JNK_f:LRP_f:1 MAPK14:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="JNK_f:LRP_f:1 MAPK14:LRP_f:1 FZD_f:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="JNK_f:LRP_f:1 MAPK14:LRP_f:1 ERK_f:LRP_f:1"/>
+      <parameter val="1" idActiveInteractions="JNK_f:LRP_f:1 MAPK14:LRP_f:1 ERK_f:LRP_f:1 FZD_f:LRP_f:1"/>
+    </node>
+    <node id="DKK_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="DKK_g:DKK_f:1"/>
+    </node>
+    <node id="AXIN1" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="CK1_f" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="BTRC" maxvalue="1">
+      <parameter val="1" idActiveInteractions="CK1_f:BTRC:1"/>
+      <parameter val="1" idActiveInteractions="AXIN1:BTRC:1"/>
+      <parameter val="1" idActiveInteractions="AXIN1:BTRC:1 CK1_f:BTRC:1"/>
+      <parameter val="1" idActiveInteractions="GSK3_f:BTRC:1"/>
+      <parameter val="1" idActiveInteractions="GSK3_f:BTRC:1 CK1_f:BTRC:1"/>
+      <parameter val="1" idActiveInteractions="GSK3_f:BTRC:1 AXIN1:BTRC:1"/>
+      <parameter val="1" idActiveInteractions="GSK3_f:BTRC:1 AXIN1:BTRC:1 CK1_f:BTRC:1"/>
+    </node>
+    <node id="CTNNB1" maxvalue="1">
+      <parameter val="1" idActiveInteractions="CHUK:CTNNB1:1"/>
+    </node>
+    <node id="CHUK" maxvalue="1">
+      <parameter val="1" idActiveInteractions="AKT_f:CHUK:1"/>
+    </node>
+    <node id="TCF7_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="CTNNB1:TCF7_f:1"/>
+    </node>
+    <node id="EGR1" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="DKK_g" maxvalue="1">
+      <parameter val="1" idActiveInteractions="TCF7_f:DKK_g:1"/>
+    </node>
+    <node id="SFRP1_g" maxvalue="1">
+      <parameter val="1"/>
+    </node>
+    <node id="NFKB_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="CHUK:NFKB_f:1"/>
+      <parameter val="1" idActiveInteractions="IKBKB:NFKB_f:1"/>
+      <parameter val="1" idActiveInteractions="IKBKB:NFKB_f:1 CHUK:NFKB_f:1"/>
+      <parameter val="1" idActiveInteractions="MSK_f:NFKB_f:1"/>
+      <parameter val="1" idActiveInteractions="MSK_f:NFKB_f:1 CHUK:NFKB_f:1"/>
+      <parameter val="1" idActiveInteractions="MSK_f:NFKB_f:1 IKBKB:NFKB_f:1"/>
+      <parameter val="1" idActiveInteractions="MSK_f:NFKB_f:1 IKBKB:NFKB_f:1 CHUK:NFKB_f:1"/>
+    </node>
+    <node id="LEF" maxvalue="1">
+      <parameter val="1" idActiveInteractions="CTNNB1:LEF:1"/>
+    </node>
+    <node id="MMP_f" maxvalue="1">
+      <parameter val="1" idActiveInteractions="LEF:MMP_f:1"/>
+    </node>
+    <edge id="CASP3:Antisurvival:1" from="CASP3" to="Antisurvival" sign="positive" minvalue="1"/>
+    <edge id="FOXO_f:Antisurvival:1" from="FOXO_f" to="Antisurvival" sign="positive" minvalue="1"/>
+    <edge id="CASP9:CASP3:1" from="CASP9" to="CASP3" sign="positive" minvalue="1"/>
+    <edge id="CASP8:CASP3:1" from="CASP8" to="CASP3" sign="positive" minvalue="1"/>
+    <edge id="AKT_f:FOXO_f:1" from="AKT_f" to="FOXO_f" sign="negative" minvalue="1"/>
+    <edge id="NLK:FOXO_f:1" from="NLK" to="FOXO_f" sign="negative" minvalue="1"/>
+    <edge id="CCND1:Prosurvival:1" from="CCND1" to="Prosurvival" sign="positive" minvalue="1"/>
+    <edge id="MYC:Prosurvival:1" from="MYC" to="Prosurvival" sign="positive" minvalue="1"/>
+    <edge id="RSK_f:CCND1:1" from="RSK_f" to="CCND1" sign="positive" minvalue="1"/>
+    <edge id="TCF7_f:CCND1:1" from="TCF7_f" to="CCND1" sign="positive" minvalue="1"/>
+    <edge id="TCF7_f:MYC:1" from="TCF7_f" to="MYC" sign="positive" minvalue="1"/>
+    <edge id="mTORC2_c:RAC_f:1" from="mTORC2_c" to="RAC_f" sign="positive" minvalue="1"/>
+    <edge id="DVL_f:RAC_f:1" from="DVL_f" to="RAC_f" sign="positive" minvalue="1"/>
+    <edge id="S6K_f:mTORC2_c:1" from="S6K_f" to="mTORC2_c" sign="negative" minvalue="1"/>
+    <edge id="TSC_f:mTORC2_c:1" from="TSC_f" to="mTORC2_c" sign="positive" minvalue="1"/>
+    <edge id="FZD_f:DVL_f:1" from="FZD_f" to="DVL_f" sign="positive" minvalue="1"/>
+    <edge id="RAC_f:MAP3K4:1" from="RAC_f" to="MAP3K4" sign="positive" minvalue="1"/>
+    <edge id="RAC_f:MAP3K11:1" from="RAC_f" to="MAP3K11" sign="positive" minvalue="1"/>
+    <edge id="MAP3K4:MAP2K4:1" from="MAP3K4" to="MAP2K4" sign="positive" minvalue="1"/>
+    <edge id="MAP3K11:MAP2K4:1" from="MAP3K11" to="MAP2K4" sign="positive" minvalue="1"/>
+    <edge id="MAP3K7:MAP2K4:1" from="MAP3K7" to="MAP2K4" sign="positive" minvalue="1"/>
+    <edge id="GRAP2:MAP2K4:1" from="GRAP2" to="MAP2K4" sign="positive" minvalue="1"/>
+    <edge id="TAB_f:MAP3K7:1" from="TAB_f" to="MAP3K7" sign="positive" minvalue="1"/>
+    <edge id="MAPK14:GRAP2:1" from="MAPK14" to="GRAP2" sign="negative" minvalue="1"/>
+    <edge id="MAP3K7:MAP2K7:1" from="MAP3K7" to="MAP2K7" sign="positive" minvalue="1"/>
+    <edge id="GRAP2:MAP2K7:1" from="GRAP2" to="MAP2K7" sign="positive" minvalue="1"/>
+    <edge id="MAP2K4:JNK_f:1" from="MAP2K4" to="JNK_f" sign="positive" minvalue="1"/>
+    <edge id="MAP2K7:JNK_f:1" from="MAP2K7" to="JNK_f" sign="positive" minvalue="1"/>
+    <edge id="DUSP1:JNK_f:1" from="DUSP1" to="JNK_f" sign="negative" minvalue="1"/>
+    <edge id="MAPK14:DUSP1:1" from="MAPK14" to="DUSP1" sign="positive" minvalue="1"/>
+    <edge id="MSK_f:DUSP1:1" from="MSK_f" to="DUSP1" sign="positive" minvalue="1"/>
+    <edge id="MAP2K4:MAPK14:1" from="MAP2K4" to="MAPK14" sign="positive" minvalue="1"/>
+    <edge id="DUSP1:MAPK14:1" from="DUSP1" to="MAPK14" sign="negative" minvalue="1"/>
+    <edge id="MAP2K3:MAPK14:1" from="MAP2K3" to="MAPK14" sign="positive" minvalue="1"/>
+    <edge id="MAP3K7:MAP2K3:1" from="MAP3K7" to="MAP2K3" sign="positive" minvalue="1"/>
+    <edge id="MAP3K5:MAP2K3:1" from="MAP3K5" to="MAP2K3" sign="positive" minvalue="1"/>
+    <edge id="AKT_f:MAP3K5:1" from="AKT_f" to="MAP3K5" sign="negative" minvalue="1"/>
+    <edge id="mTORC2_c:AKT_f:1" from="mTORC2_c" to="AKT_f" sign="positive" minvalue="1"/>
+    <edge id="PDPK1:AKT_f:1" from="PDPK1" to="AKT_f" sign="positive" minvalue="1"/>
+    <edge id="MAPK14:TAB_f:1" from="MAPK14" to="TAB_f" sign="negative" minvalue="1"/>
+    <edge id="MAPK14:MSK_f:1" from="MAPK14" to="MSK_f" sign="positive" minvalue="1"/>
+    <edge id="ERK_f:MSK_f:1" from="ERK_f" to="MSK_f" sign="positive" minvalue="1"/>
+    <edge id="MAPK14:RTPK_f:1" from="MAPK14" to="RTPK_f" sign="negative" minvalue="1"/>
+    <edge id="RTPK_g:RTPK_f:1" from="RTPK_g" to="RTPK_f" sign="positive" minvalue="1"/>
+    <edge id="MEK_f:RTPK_f:1" from="MEK_f" to="RTPK_f" sign="negative" minvalue="1"/>
+    <edge id="MMP_f:RTPK_f:1" from="MMP_f" to="RTPK_f" sign="positive" minvalue="1"/>
+    <edge id="FOXO_f:RTPK_g:1" from="FOXO_f" to="RTPK_g" sign="positive" minvalue="1"/>
+    <edge id="ERK_f:MEK_f:1" from="ERK_f" to="MEK_f" sign="negative" minvalue="1"/>
+    <edge id="RAF_f:MEK_f:1" from="RAF_f" to="MEK_f" sign="positive" minvalue="1"/>
+    <edge id="MAP3K8:MEK_f:1" from="MAP3K8" to="MEK_f" sign="positive" minvalue="1"/>
+    <edge id="RTPK_f:SHC1:1" from="RTPK_f" to="SHC1" sign="positive" minvalue="1"/>
+    <edge id="PTEN:SHC1:1" from="PTEN" to="SHC1" sign="negative" minvalue="1"/>
+    <edge id="PTEN_g:PTEN:1" from="PTEN_g" to="PTEN" sign="positive" minvalue="1"/>
+    <edge id="GSK3_f:PTEN:1" from="GSK3_f" to="PTEN" sign="negative" minvalue="1"/>
+    <edge id="SHC1:GRB2:1" from="SHC1" to="GRB2" sign="positive" minvalue="1"/>
+    <edge id="GRB2:SOS1:1" from="GRB2" to="SOS1" sign="positive" minvalue="1"/>
+    <edge id="ERK_f:SOS1:1" from="ERK_f" to="SOS1" sign="negative" minvalue="1"/>
+    <edge id="MEK_f:ERK_f:1" from="MEK_f" to="ERK_f" sign="positive" minvalue="1"/>
+    <edge id="DUSP6:ERK_f:1" from="DUSP6" to="ERK_f" sign="negative" minvalue="1"/>
+    <edge id="SOS1:KRAS:1" from="SOS1" to="KRAS" sign="positive" minvalue="1"/>
+    <edge id="PTPN11:KRAS:1" from="PTPN11" to="KRAS" sign="positive" minvalue="1"/>
+    <edge id="GAB_f:PTPN11:1" from="GAB_f" to="PTPN11" sign="positive" minvalue="1"/>
+    <edge id="AKT_f:RAF_f:1" from="AKT_f" to="RAF_f" sign="negative" minvalue="1"/>
+    <edge id="ERK_f:RAF_f:1" from="ERK_f" to="RAF_f" sign="negative" minvalue="1"/>
+    <edge id="KRAS:RAF_f:1" from="KRAS" to="RAF_f" sign="positive" minvalue="1"/>
+    <edge id="RHEB:RAF_f:1" from="RHEB" to="RAF_f" sign="negative" minvalue="1"/>
+    <edge id="TSC_f:RHEB:1" from="TSC_f" to="RHEB" sign="negative" minvalue="1"/>
+    <edge id="IKBKB:MAP3K8:1" from="IKBKB" to="MAP3K8" sign="positive" minvalue="1"/>
+    <edge id="ERK_f:DUSP6:1" from="ERK_f" to="DUSP6" sign="positive" minvalue="1"/>
+    <edge id="mTORC1_c:DUSP6:1" from="mTORC1_c" to="DUSP6" sign="positive" minvalue="1"/>
+    <edge id="RHEB:mTORC1_c:1" from="RHEB" to="mTORC1_c" sign="positive" minvalue="1"/>
+    <edge id="RSK_f:mTORC1_c:1" from="RSK_f" to="mTORC1_c" sign="positive" minvalue="1"/>
+    <edge id="AKT1S1:mTORC1_c:1" from="AKT1S1" to="mTORC1_c" sign="negative" minvalue="1"/>
+    <edge id="GRB2:GAB_f:1" from="GRB2" to="GAB_f" sign="positive" minvalue="1"/>
+    <edge id="ERK_f:GAB_f:1" from="ERK_f" to="GAB_f" sign="negative" minvalue="1"/>
+    <edge id="ERK_f:RSK_f:1" from="ERK_f" to="RSK_f" sign="positive" minvalue="1"/>
+    <edge id="PDPK1:RSK_f:1" from="PDPK1" to="RSK_f" sign="positive" minvalue="1"/>
+    <edge id="PTEN:PDPK1:1" from="PTEN" to="PDPK1" sign="negative" minvalue="1"/>
+    <edge id="PIK3CA:PDPK1:1" from="PIK3CA" to="PDPK1" sign="positive" minvalue="1"/>
+    <edge id="KRAS:PIK3CA:1" from="KRAS" to="PIK3CA" sign="positive" minvalue="1"/>
+    <edge id="GAB_f:PIK3CA:1" from="GAB_f" to="PIK3CA" sign="positive" minvalue="1"/>
+    <edge id="IRS1:PIK3CA:1" from="IRS1" to="PIK3CA" sign="positive" minvalue="1"/>
+    <edge id="ERK_f:IRS1:1" from="ERK_f" to="IRS1" sign="negative" minvalue="1"/>
+    <edge id="S6K_f:IRS1:1" from="S6K_f" to="IRS1" sign="negative" minvalue="1"/>
+    <edge id="IKBKB:IRS1:1" from="IKBKB" to="IRS1" sign="negative" minvalue="1"/>
+    <edge id="mTORC1_c:S6K_f:1" from="mTORC1_c" to="S6K_f" sign="positive" minvalue="1"/>
+    <edge id="PDPK1:S6K_f:1" from="PDPK1" to="S6K_f" sign="positive" minvalue="1"/>
+    <edge id="MAP3K7:IKBKB:1" from="MAP3K7" to="IKBKB" sign="positive" minvalue="1"/>
+    <edge id="TP53:IKBKB:1" from="TP53" to="IKBKB" sign="negative" minvalue="1"/>
+    <edge id="EGR1:PTEN_g:1" from="EGR1" to="PTEN_g" sign="positive" minvalue="1"/>
+    <edge id="DVL_f:GSK3_f:1" from="DVL_f" to="GSK3_f" sign="negative" minvalue="1"/>
+    <edge id="MAPK14:GSK3_f:1" from="MAPK14" to="GSK3_f" sign="negative" minvalue="1"/>
+    <edge id="AKT_f:GSK3_f:1" from="AKT_f" to="GSK3_f" sign="negative" minvalue="1"/>
+    <edge id="ERK_f:GSK3_f:1" from="ERK_f" to="GSK3_f" sign="negative" minvalue="1"/>
+    <edge id="RSK_f:GSK3_f:1" from="RSK_f" to="GSK3_f" sign="negative" minvalue="1"/>
+    <edge id="S6K_f:GSK3_f:1" from="S6K_f" to="GSK3_f" sign="negative" minvalue="1"/>
+    <edge id="LRP_f:GSK3_f:1" from="LRP_f" to="GSK3_f" sign="negative" minvalue="1"/>
+    <edge id="AKT_f:TSC_f:1" from="AKT_f" to="TSC_f" sign="negative" minvalue="1"/>
+    <edge id="ERK_f:TSC_f:1" from="ERK_f" to="TSC_f" sign="negative" minvalue="1"/>
+    <edge id="RSK_f:TSC_f:1" from="RSK_f" to="TSC_f" sign="negative" minvalue="1"/>
+    <edge id="IKBKB:TSC_f:1" from="IKBKB" to="TSC_f" sign="negative" minvalue="1"/>
+    <edge id="GSK3_f:TSC_f:1" from="GSK3_f" to="TSC_f" sign="positive" minvalue="1"/>
+    <edge id="MAPK14:TP53:1" from="MAPK14" to="TP53" sign="positive" minvalue="1"/>
+    <edge id="MDM2:TP53:1" from="MDM2" to="TP53" sign="negative" minvalue="1"/>
+    <edge id="AKT_f:AKT1S1:1" from="AKT_f" to="AKT1S1" sign="negative" minvalue="1"/>
+    <edge id="AKT_f:MDM2:1" from="AKT_f" to="MDM2" sign="positive" minvalue="1"/>
+    <edge id="S6K_f:MDM2:1" from="S6K_f" to="MDM2" sign="negative" minvalue="1"/>
+    <edge id="MDM2_g:MDM2:1" from="MDM2_g" to="MDM2" sign="positive" minvalue="1"/>
+    <edge id="TP53:MDM2_g:1" from="TP53" to="MDM2_g" sign="positive" minvalue="1"/>
+    <edge id="NFKB_f:MDM2_g:1" from="NFKB_f" to="MDM2_g" sign="positive" minvalue="1"/>
+    <edge id="TP53:BAX:1" from="TP53" to="BAX" sign="positive" minvalue="1"/>
+    <edge id="BAX:CYCS:1" from="BAX" to="CYCS" sign="positive" minvalue="1"/>
+    <edge id="BCL2:CYCS:1" from="BCL2" to="CYCS" sign="negative" minvalue="1"/>
+    <edge id="BAD:BCL2:1" from="BAD" to="BCL2" sign="negative" minvalue="1"/>
+    <edge id="AKT_f:BAD:1" from="AKT_f" to="BAD" sign="negative" minvalue="1"/>
+    <edge id="RSK_f:BAD:1" from="RSK_f" to="BAD" sign="negative" minvalue="1"/>
+    <edge id="MAP3K7:NLK:1" from="MAP3K7" to="NLK" sign="positive" minvalue="1"/>
+    <edge id="CYCS:CASP9:1" from="CYCS" to="CASP9" sign="positive" minvalue="1"/>
+    <edge id="CFLAR:CASP8:1" from="CFLAR" to="CASP8" sign="negative" minvalue="1"/>
+    <edge id="AKT_f:CFLAR:1" from="AKT_f" to="CFLAR" sign="positive" minvalue="1"/>
+    <edge id="ITCH:CFLAR:1" from="ITCH" to="CFLAR" sign="negative" minvalue="1"/>
+    <edge id="JNK_f:ITCH:1" from="JNK_f" to="ITCH" sign="positive" minvalue="1"/>
+    <edge id="SFRP1:FZD_f:1" from="SFRP1" to="FZD_f" sign="negative" minvalue="1"/>
+    <edge id="SFRP1_g:SFRP1:1" from="SFRP1_g" to="SFRP1" sign="positive" minvalue="1"/>
+    <edge id="JNK_f:LRP_f:1" from="JNK_f" to="LRP_f" sign="positive" minvalue="1"/>
+    <edge id="MAPK14:LRP_f:1" from="MAPK14" to="LRP_f" sign="positive" minvalue="1"/>
+    <edge id="ERK_f:LRP_f:1" from="ERK_f" to="LRP_f" sign="positive" minvalue="1"/>
+    <edge id="FZD_f:LRP_f:1" from="FZD_f" to="LRP_f" sign="positive" minvalue="1"/>
+    <edge id="DKK_f:LRP_f:1" from="DKK_f" to="LRP_f" sign="negative" minvalue="1"/>
+    <edge id="DKK_g:DKK_f:1" from="DKK_g" to="DKK_f" sign="positive" minvalue="1"/>
+    <edge id="LRP_f:AXIN1:1" from="LRP_f" to="AXIN1" sign="negative" minvalue="1"/>
+    <edge id="LRP_f:CK1_f:1" from="LRP_f" to="CK1_f" sign="negative" minvalue="1"/>
+    <edge id="GSK3_f:BTRC:1" from="GSK3_f" to="BTRC" sign="positive" minvalue="1"/>
+    <edge id="AXIN1:BTRC:1" from="AXIN1" to="BTRC" sign="positive" minvalue="1"/>
+    <edge id="CK1_f:BTRC:1" from="CK1_f" to="BTRC" sign="positive" minvalue="1"/>
+    <edge id="BTRC:CTNNB1:1" from="BTRC" to="CTNNB1" sign="negative" minvalue="1"/>
+    <edge id="CHUK:CTNNB1:1" from="CHUK" to="CTNNB1" sign="positive" minvalue="1"/>
+    <edge id="AKT_f:CHUK:1" from="AKT_f" to="CHUK" sign="positive" minvalue="1"/>
+    <edge id="NLK:TCF7_f:1" from="NLK" to="TCF7_f" sign="negative" minvalue="1"/>
+    <edge id="CTNNB1:TCF7_f:1" from="CTNNB1" to="TCF7_f" sign="positive" minvalue="1"/>
+    <edge id="TCF7_f:EGR1:1" from="TCF7_f" to="EGR1" sign="negative" minvalue="1"/>
+    <edge id="MYC:DKK_g:1" from="MYC" to="DKK_g" sign="negative" minvalue="1"/>
+    <edge id="TCF7_f:DKK_g:1" from="TCF7_f" to="DKK_g" sign="positive" minvalue="1"/>
+    <edge id="MYC:SFRP1_g:1" from="MYC" to="SFRP1_g" sign="negative" minvalue="1"/>
+    <edge id="MSK_f:NFKB_f:1" from="MSK_f" to="NFKB_f" sign="positive" minvalue="1"/>
+    <edge id="IKBKB:NFKB_f:1" from="IKBKB" to="NFKB_f" sign="positive" minvalue="1"/>
+    <edge id="CHUK:NFKB_f:1" from="CHUK" to="NFKB_f" sign="positive" minvalue="1"/>
+    <edge id="CTNNB1:LEF:1" from="CTNNB1" to="LEF" sign="positive" minvalue="1"/>
+    <edge id="LEF:MMP_f:1" from="LEF" to="MMP_f" sign="positive" minvalue="1"/>
+  </graph>
+</gxl>
