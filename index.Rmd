@@ -122,16 +122,22 @@ Since this value is the lowest in the output [ensemble-wise synergies file](http
 
 # Visualize Prediction Performance {-}
 
-**How good were drabme's synergy predictions?**
+In this section we try to assess the quality of drabme's synergy predictions.
 
-This is a standard binary classification problem (synergy or no synergy, varying a threshold defining how stringent is our definition of synergy) and to properly assess our algorithm's performance we need to compare our results with a true set of drug synergies.
-All $21$ drug combinations from the [drugpanel file](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/drugpanel) were experimentally tested in [@Flobak2015], producing a set of $4$ gold standard synergies (see [respective file](https://github.com/druglogics/synergy-tutorial/blob/main/observed_synergies_cascade_1.0)):
+## Observed synergies for CASCADE 1.0 {-}
 
-:::{.green-box}
-`PI-PD`, `PI-5Z`, `PD-AK`, `AK-5Z`
-:::
+The synergy prediction problem is a standard binary classification problem (synergy or no synergy, varying a threshold defining how stringent is our definition of synergy).
+To properly assess our algorithm's performance we need to compare our results with a true set of drug synergies.
+All $21$ drug combinations from the [drugpanel file](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/drugpanel) were experimentally tested in [@Flobak2015], producing a set of $4$ gold standard synergies (see [respective file](https://github.com/druglogics/synergy-tutorial/blob/main/observed_synergies_cascade_1.0)): `PI-PD`, `PI-5Z`, `PD-AK` and `AK-5Z`.
 
+## Workflow {-}
+
+:::{.note}
 We will use some `R` code to parse drabme's output prediction scores and visualize our pipeline's synergy prediction performance using the **Receiver Operating Characteristic (ROC)** and the **Precision-Recall (PR)** curves as well as the **Area Under the Curve (AUC)**.
+The below code should be run from the root of the [`synergy-tutorial`](https://github.com/druglogics/synergy-tutorial) repository.
+
+We also include a separate `R` [script](https://github.com/druglogics/synergy-tutorial/blob/main/code.R) with all the code in the below code blocks for ease of use.
+:::
 
 ## Read Output Results {-}
 
