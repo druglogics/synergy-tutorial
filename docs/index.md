@@ -1,7 +1,7 @@
 ---
 title: "Tutorial for synergy prediction using the DrugLogics software pipeline"
 author: "[John Zobolas](https://github.com/bblodfon)"
-date: "Last updated: 28 November, 2021"
+date: "Last updated: 29 November, 2021"
 description: "A software tutorial"
 url: 'https\://druglogics.github.io/synergy-tutorial/'
 github-repo: "druglogics/synergy-tutorial"
@@ -62,6 +62,7 @@ Even if you choose the 1st option, make sure you clone the `druglogics-synergy` 
 # Run CASCADE 1.0 Example {-}
 
 We are going to use the [`ags_cascade_1.0`](https://github.com/druglogics/druglogics-synergy/tree/v1.2.1/ags_cascade_1.0) directory that resides in the `druglogics-synergy` directory as an input to the `Launcher` class to run the CASCADE 1.0 example.
+Note that preparing an input directory with all necessary files is the easiest way to run `druglogics-synergy`.
 
 The command to execute from the root of the `druglogics-synergy` directory is the following:
 
@@ -185,8 +186,8 @@ DT::datatable(data = pred_hsa, options =
 ```
 
 ```{=html}
-<div id="htmlwidget-94963439f329ad57a803" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-94963439f329ad57a803">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],["PI-PD","PI-CT","PI-BI","PI-PK","PI-AK","PI-5Z","PD-CT","PD-BI","PD-PK","PD-AK","PD-5Z","CT-BI","CT-PK","CT-AK","CT-5Z","BI-PK","BI-AK","BI-5Z","PK-AK","PK-5Z","AK-5Z"],[-0.633699633699634,0,-0.204448329448329,-0.224852862493312,-0.0333288172334372,-0.313618771165941,0,-0.325976107226107,0,-0.942822870851659,0,0,0,0,0,-0.564138576779026,-0.165625813166797,0,-0.518270229440091,0,-0.462540217557837],[1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>perturbation<\/th>\n      <th>ss_score<\/th>\n      <th>observed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"lengthMenu":[7,14,21],"searching":false,"order":[[2,"asc"]],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':value == 0 ? \"white\" : value == 1 ? \"#ffffa1\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.rowCallback"],"jsHooks":[]}</script>
+<div id="htmlwidget-dc6bd7fe9a85ab78d98b" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dc6bd7fe9a85ab78d98b">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],["PI-PD","PI-CT","PI-BI","PI-PK","PI-AK","PI-5Z","PD-CT","PD-BI","PD-PK","PD-AK","PD-5Z","CT-BI","CT-PK","CT-AK","CT-5Z","BI-PK","BI-AK","BI-5Z","PK-AK","PK-5Z","AK-5Z"],[-0.633699633699634,0,-0.204448329448329,-0.224852862493312,-0.0333288172334372,-0.313618771165941,0,-0.325976107226107,0,-0.942822870851659,0,0,0,0,0,-0.564138576779026,-0.165625813166797,0,-0.518270229440091,0,-0.462540217557837],[1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>perturbation<\/th>\n      <th>ss_score<\/th>\n      <th>observed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"lengthMenu":[7,14,21],"searching":false,"order":[[2,"asc"]],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':value == 0 ? \"white\" : value == 1 ? \"#ffffa1\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.rowCallback"],"jsHooks":[]}</script>
 ```
 
 ## Receiver Operating Characteristic (ROC) {-}
@@ -243,7 +244,7 @@ grid(lwd = 0.5)
 
 In this section we show how we can make our predictions better by normalizing them to the predictions of gitsbe models trained to a **random proliferative** [training data profile](https://druglogics.github.io/druglogics-doc/training-data.html#unperturbed-condition---globaloutput-response).
 The only change required to run the random model simulation is to change the respective training data file.
-We have the required [training data file](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/random_train) already in the `druglogics-synergy` repository so execute the following two commands:
+We have the required [training data file](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/random_train) already in the `druglogics-synergy` repository so execute the following two commands from its root:
 
 ```
 cat ags_cascade_1.0/random_train > ags_cascade_1.0/training
@@ -292,15 +293,16 @@ DT::datatable(data = pred_hsa, options =
 ```
 
 ```{=html}
-<div id="htmlwidget-f2c20fd79dc00e2a6594" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f2c20fd79dc00e2a6594">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],["PI-PD","PI-CT","PI-BI","PI-PK","PI-AK","PI-5Z","PD-CT","PD-BI","PD-PK","PD-AK","PD-5Z","CT-BI","CT-PK","CT-AK","CT-5Z","BI-PK","BI-AK","BI-5Z","PK-AK","PK-5Z","AK-5Z"],[-0.633699633699634,0,-0.204448329448329,-0.224852862493312,-0.0333288172334372,-0.313618771165941,0,-0.325976107226107,0,-0.942822870851659,0,0,0,0,0,-0.564138576779026,-0.165625813166797,0,-0.518270229440091,0,-0.462540217557837],[-0.527317415730337,0,-0.823879551820728,-0.903210272873194,-0.280827824087381,-0.121067415730337,0,-0.187235478132859,0,-0.32705389848247,0,0,0,0,0,-1.75840336134454,-0.277121374865736,0,-0.461048935703314,0,-0.168310020637469],[-0.106382217969296,0,0.619431222372399,0.678357410379883,0.247499006853944,-0.192551355435604,0,-0.138740629093248,0,-0.615768972369189,0,0,0,0,0,1.19426478456551,0.111495561698939,0,-0.0572212937367771,0,-0.294230196920368],[1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>perturbation<\/th>\n      <th>ss_score<\/th>\n      <th>prolif_score<\/th>\n      <th>norm_score<\/th>\n      <th>observed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"lengthMenu":[7,14,21],"searching":false,"order":[[2,"asc"]],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0}],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'background-color':value == 0 ? \"white\" : value == 1 ? \"#ffffa1\" : null});\nvar value=data[1]; $(row).css({'background-color':value == \"BI-PK\" ? \"#ade2e6\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.rowCallback"],"jsHooks":[]}</script>
+<div id="htmlwidget-0269ead92745198272ac" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0269ead92745198272ac">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],["PI-PD","PI-CT","PI-BI","PI-PK","PI-AK","PI-5Z","PD-CT","PD-BI","PD-PK","PD-AK","PD-5Z","CT-BI","CT-PK","CT-AK","CT-5Z","BI-PK","BI-AK","BI-5Z","PK-AK","PK-5Z","AK-5Z"],[-0.633699633699634,0,-0.204448329448329,-0.224852862493312,-0.0333288172334372,-0.313618771165941,0,-0.325976107226107,0,-0.942822870851659,0,0,0,0,0,-0.564138576779026,-0.165625813166797,0,-0.518270229440091,0,-0.462540217557837],[-0.527317415730337,0,-0.823879551820728,-0.903210272873194,-0.280827824087381,-0.121067415730337,0,-0.187235478132859,0,-0.32705389848247,0,0,0,0,0,-1.75840336134454,-0.277121374865736,0,-0.461048935703314,0,-0.168310020637469],[-0.106382217969296,0,0.619431222372399,0.678357410379883,0.247499006853944,-0.192551355435604,0,-0.138740629093248,0,-0.615768972369189,0,0,0,0,0,1.19426478456551,0.111495561698939,0,-0.0572212937367771,0,-0.294230196920368],[1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>perturbation<\/th>\n      <th>ss_score<\/th>\n      <th>prolif_score<\/th>\n      <th>norm_score<\/th>\n      <th>observed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"lengthMenu":[7,14,21],"searching":false,"order":[[2,"asc"]],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0}],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'background-color':value == 0 ? \"white\" : value == 1 ? \"#ffffa1\" : null});\nvar value=data[1]; $(row).css({'background-color':value == \"BI-PK\" ? \"#ade2e6\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.rowCallback"],"jsHooks":[]}</script>
 ```
 
 :::{.green-box}
-The **importance of normalization** can be seen by observing how the top 7 predictions by the calibrated models changed in the `norm_score` column.
+The **importance of normalization** can be seen by observing how the top 7 predictions by the calibrated models ($\text{ss_score}$) changed in the `norm_score` column.
 
 E.g. `BI-PK` was synergistic according to the steady state calibrated predictions ($\text{ss_score}=-0.56414$) but was **even more synergistic** according to the random model predictions ($\text{prolif_score}=-1.75840$).
-Therefore the normalized score **penalizes** such combinations to be more antagonistic ($\text{norm_score = ss_score - prolif_score}=1.19426$), giving priority to other observed synergies (e.g `AK-5Z`, `PI-5Z`) to 'climb up' to the top predictions list.
+Therefore the normalized score **penalizes** such combinations to be more antagonistic ($\text{norm_score = ss_score - prolif_score}=1.19426$), allowing other observed synergies (e.g `AK-5Z`, `PI-5Z`) to 'climb up' to the top predictions list.
+
 Arranging by ascending order the `norm_score` column shows that **the top 5 normalized predictions include all the observed synergies**.
 :::
 
@@ -337,11 +339,32 @@ grid(lwd = 0.5)
 ```
 
 <div class="figure">
-<img src="index_files/figure-html/norm-perf-res-1.png" alt="ROC and PR curve (CASCADE 1.0, HSA synergy method, Calibrated: predictions from 150 models calibrated to the AGS steady state, Calibrated Normalized: Calibrated predictions normalized to random models predictions" width="50%" /><img src="index_files/figure-html/norm-perf-res-2.png" alt="ROC and PR curve (CASCADE 1.0, HSA synergy method, Calibrated: predictions from 150 models calibrated to the AGS steady state, Calibrated Normalized: Calibrated predictions normalized to random models predictions" width="50%" />
-<p class="caption">(\#fig:norm-perf-res)ROC and PR curve (CASCADE 1.0, HSA synergy method, Calibrated: predictions from 150 models calibrated to the AGS steady state, Calibrated Normalized: Calibrated predictions normalized to random models predictions</p>
+<img src="index_files/figure-html/norm-perf-res-1.png" alt="ROC and PR curve (CASCADE 1.0, HSA synergy method, Calibrated: predictions from 150 models calibrated to the AGS steady state (ss_score), Calibrated Normalized: Calibrated predictions normalized to random models predictions (norm_score)" width="50%" /><img src="index_files/figure-html/norm-perf-res-2.png" alt="ROC and PR curve (CASCADE 1.0, HSA synergy method, Calibrated: predictions from 150 models calibrated to the AGS steady state (ss_score), Calibrated Normalized: Calibrated predictions normalized to random models predictions (norm_score)" width="50%" />
+<p class="caption">(\#fig:norm-perf-res)ROC and PR curve (CASCADE 1.0, HSA synergy method, Calibrated: predictions from 150 models calibrated to the AGS steady state (ss_score), Calibrated Normalized: Calibrated predictions normalized to random models predictions (norm_score)</p>
 </div>
 
 # Trying various input configurations {-}
+
+We offer a [script](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/run_druglogics_synergy.sh) which can be used to run the `druglogics-synergy` module with different input files and configurations.
+This script was particularly made to run simulations with the CASCADE 1.0 and 2.0 topologies (using the respective input files), while changing some of gitsbe's and drabme's configuration parameters (e.g. the number of simulations and the synergy calculation method).
+
+In particular, executing the script from the root of the `druglogics-synergy` repository with no changes ^[Note that the CASCADE 2.0 simulations take substantially more time than the CASCADE 1.0 ones, due to a larger topology and drug perturbation set tested.]:
+
+```
+./run_druglogics_synergy.sh
+```
+
+will run the synergy prediction pipeline (gitsbe and drabme) a total of $16$ times.
+Each time, a different combination of configurations will be chosen from:
+
+- $2$ topologies (CASCADE 1.0 or CASCADE 2.0)
+- $2$ training data files (train to the curated AGS steady state or a random proliferative profile)
+- $2$ different number of genetic algorithm simulations ($50$ or $150$)
+- and $2$ synergy calculation methods (HSA or Bliss)
+
+:::{.green-box}
+All in all, the given script can be used as a *reference* to extend or build your own and run multiple simulations with our software pipeline based on different input directories and configuration options.
+:::
 
 # R session info {-}
 
