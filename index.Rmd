@@ -278,7 +278,7 @@ Arranging by ascending order the `norm_score` column shows that **the top 5 norm
 :::
 
 So, as expected, the normalized prediction scores (**Calibrated Normalized**), have better ROC and PR AUCs:
-```{r norm-perf-res, fig.show='hold', out.width='50%', fig.width=5, fig.height=5, dpi=300, fig.cap='ROC and PR curve (CASCADE 1.0, HSA synergy method, Calibrated: predictions from 150 models calibrated to the AGS steady state, Calibrated Normalized: Calibrated predictions normalized to random models predictions'}
+```{r norm-perf-res, fig.show='hold', out.width='50%', fig.width=5, fig.height=5, dpi=300, fig.cap='ROC and PR curve (CASCADE 1.0, HSA synergy method, Calibrated: predictions from 150 models calibrated to the AGS steady state (ss_score), Calibrated Normalized: Calibrated predictions normalized to random models predictions (norm_score)'}
 # Get ROC statistics (`roc_res_norm$AUC` holds the ROC AUC)
 roc_res_norm = usefun::get_roc_stats(df = pred_hsa, pred_col = "norm_score", label_col = "observed")
 
@@ -309,6 +309,20 @@ grid(lwd = 0.5)
 ```
 
 # Trying various input configurations {-}
+
+We offer a [script](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/run_druglogics_synergy.sh) which can be used to run the `druglogics-synergy` module with different input files and configurations.
+This script was particular made to run simulations using CASCADE 1.0 and CASCADE 2.0 topologies (and the respective input files), while changing some of gitsbe's and drabme's configuration parameters (e.g. the number of simulations and the synergy calculation method).
+
+In particular, executing the script from the root of the `druglogics-synergy` repository with no changes:
+
+```
+./run_druglogics_synergy.sh
+```
+
+will run the synergy prediction pipeline (gitsbe and drabme) a total of $16$ times, that is $2$ topologies (CASCADE 1.0 and 2.0) $\times 2$ (training to the AGS steady state and a random proliferative data profile) $\times 2$ ($50$ and $150$ simulations in the genetic algorithm) $\times 2$ (HSA and Bliss as synergy method).
+Also all these simulations will compute the fixpoint attractors.
+
+Following the above logic, the given script can be extended to run multiple simulations based on the input directories and given configuration options.
 
 # R session info {-}
 
