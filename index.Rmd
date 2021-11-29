@@ -279,7 +279,7 @@ Arranging by ascending order the `norm_score` column shows that **the top 5 norm
 :::
 
 So, as expected, the normalized prediction scores (**Calibrated Normalized**), have better ROC and PR AUCs:
-```{r norm-perf-res, fig.show='hold', out.width='50%', fig.width=5, fig.height=5, dpi=300, fig.cap='ROC and PR curve (CASCADE 1.0, HSA synergy method, Calibrated: predictions from 150 models calibrated to the AGS steady state (ss_score), Calibrated Normalized: Calibrated predictions normalized to random models predictions (norm_score)'}
+```{r norm-perf-res, fig.show='hold', out.width='50%', fig.width=5, fig.height=5, dpi=300, fig.cap='ROC and PR curve (CASCADE 1.0, HSA synergy method, Calibrated: predictions from 150 models calibrated to the AGS steady state (ss_score), Calibrated Normalized: Calibrated predictions normalized to random models predictions (norm_score))'}
 # Get ROC statistics (`roc_res_norm$AUC` holds the ROC AUC)
 roc_res_norm = usefun::get_roc_stats(df = pred_hsa, pred_col = "norm_score", label_col = "observed")
 
