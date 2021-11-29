@@ -269,10 +269,11 @@ DT::datatable(data = pred_hsa, options =
 ```
 
 :::{.green-box}
-The **importance of normalization** can be seen by observing how the top 7 predictions by the calibrated models changed in the `norm_score` column.
+The **importance of normalization** can be seen by observing how the top 7 predictions by the calibrated models ($\text{ss_score}$) changed in the `norm_score` column.
 
 E.g. `BI-PK` was synergistic according to the steady state calibrated predictions ($\text{ss_score}=-0.56414$) but was **even more synergistic** according to the random model predictions ($\text{prolif_score}=-1.75840$).
 Therefore the normalized score **penalizes** such combinations to be more antagonistic ($\text{norm_score = ss_score - prolif_score}=1.19426$), giving priority to other observed synergies (e.g `AK-5Z`, `PI-5Z`) to 'climb up' to the top predictions list.
+
 Arranging by ascending order the `norm_score` column shows that **the top 5 normalized predictions include all the observed synergies**.
 :::
 
