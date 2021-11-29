@@ -224,7 +224,7 @@ grid(lwd = 0.5)
 
 In this section we show how we can make our predictions better by normalizing them to the predictions of gitsbe models trained to a **random proliferative** [training data profile](https://druglogics.github.io/druglogics-doc/training-data.html#unperturbed-condition---globaloutput-response).
 The only change required to run the random model simulation is to change the respective training data file.
-We have the required [training data file](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/random_train) already in the `druglogics-synergy` repository so execute the following two commands:
+We have the required [training data file](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/random_train) already in the `druglogics-synergy` repository so execute the following two commands from its root:
 
 ```
 cat ags_cascade_1.0/random_train > ags_cascade_1.0/training
@@ -273,7 +273,7 @@ DT::datatable(data = pred_hsa, options =
 The **importance of normalization** can be seen by observing how the top 7 predictions by the calibrated models ($\text{ss_score}$) changed in the `norm_score` column.
 
 E.g. `BI-PK` was synergistic according to the steady state calibrated predictions ($\text{ss_score}=-0.56414$) but was **even more synergistic** according to the random model predictions ($\text{prolif_score}=-1.75840$).
-Therefore the normalized score **penalizes** such combinations to be more antagonistic ($\text{norm_score = ss_score - prolif_score}=1.19426$), giving priority to other observed synergies (e.g `AK-5Z`, `PI-5Z`) to 'climb up' to the top predictions list.
+Therefore the normalized score **penalizes** such combinations to be more antagonistic ($\text{norm_score = ss_score - prolif_score}=1.19426$), allowing other observed synergies (e.g `AK-5Z`, `PI-5Z`) to 'climb up' to the top predictions list.
 
 Arranging by ascending order the `norm_score` column shows that **the top 5 normalized predictions include all the observed synergies**.
 :::
@@ -312,18 +312,25 @@ grid(lwd = 0.5)
 # Trying various input configurations {-}
 
 We offer a [script](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/run_druglogics_synergy.sh) which can be used to run the `druglogics-synergy` module with different input files and configurations.
-This script was particular made to run simulations using CASCADE 1.0 and CASCADE 2.0 topologies (and the respective input files), while changing some of gitsbe's and drabme's configuration parameters (e.g. the number of simulations and the synergy calculation method).
+This script was particularly made to run simulations with the CASCADE 1.0 and 2.0 topologies (using the respective input files), while changing some of gitsbe's and drabme's configuration parameters (e.g. the number of simulations and the synergy calculation method).
 
-In particular, executing the script from the root of the `druglogics-synergy` repository with no changes:
+In particular, executing the script from the root of the `druglogics-synergy` repository with no changes ^[Note that the CASCADE 2.0 simulations take substantially more time than the CASCADE 1.0 ones, due to a larger topology and drug perturbation set tested.]:
 
 ```
 ./run_druglogics_synergy.sh
 ```
 
-will run the synergy prediction pipeline (gitsbe and drabme) a total of $16$ times, that is $2$ topologies (CASCADE 1.0 and 2.0) $\times 2$ (training to the AGS steady state and a random proliferative data profile) $\times 2$ ($50$ and $150$ simulations in the genetic algorithm) $\times 2$ (HSA and Bliss as synergy method).
-Also all these simulations will compute the fixpoint attractors.
+will run the synergy prediction pipeline (gitsbe and drabme) a total of $16$ times.
+Each time, a different combination of configurations will be chosen from:
 
-Following the above logic, the given script can be extended to run multiple simulations based on the input directories and given configuration options.
+- $2$ topologies (CASCADE 1.0 or CASCADE 2.0)
+- $2$ training data files (train to the curated AGS steady state or a random proliferative profile)
+- $2$ different number of genetic algorithm simulations ($50$ or $150$)
+- and $2$ synergy calculation methods (HSA or Bliss)
+
+:::{.green-box}
+All in all, the given script can be used as a *reference* to extend or build your own and run multiple simulations with our software pipeline based on different input directories and configuration options.
+:::
 
 # R session info {-}
 
