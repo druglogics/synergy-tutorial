@@ -1,7 +1,7 @@
 ---
 title: "Tutorial for synergy prediction using the DrugLogics software pipeline"
 author: "[John Zobolas](https://github.com/bblodfon)"
-date: "Last updated: 29 November, 2021"
+date: "Last updated: 09 February, 2022"
 description: "A software tutorial"
 url: 'https\://druglogics.github.io/synergy-tutorial/'
 github-repo: "druglogics/synergy-tutorial"
@@ -22,17 +22,24 @@ You can find the full documentation for these two modules in the following link:
 
 # Install {-}
 
-:::{.green-box}
-Firstly, make sure you have installed [Maven](https://maven.apache.org/install.html) `3.6.0` and `Java 8` (minimum working versions).
+There are **3 ways** to install `druglogics-synergy`.
+We list them below from easiest to hardest:
+
+1. Use the **Docker image** (`1.0` version, `druglogics-synergy` at `1.2.1` version) where all dependencies and external libraries (for [attractor calculation](https://druglogics.github.io/druglogics-doc/gitsbe-config.html#attractor-tool)) are already installed:
+
+```
+docker pull bblodfon/druglogics-synergy:1.0
+```
+
+:::{.orange-box}
+If you are not using Docker, make sure you have installed [Maven](https://maven.apache.org/install.html) `3.6.0` and `Java 8` (minimum working versions).
 For the rest of the tutorial we are going to use the `druglogics-synergy` at version `1.2.1`, which includes `gitsbe` at `1.3.1` version and `drabme` at `1.2.1` version.
 :::
 
-There are **two ways** to install `druglogics-synergy`.
+2. Download a **released GitHub package** from: https://github.com/druglogics/druglogics-synergy/packages/.
+The file of interest is `synergy-1.2.1-jar-with-dependencies.jar`, which includes all dependencies and does not require any manual installation whatsoever (but you need to have `Java` installed to run it).
 
-1. **The easiest option** is to download the latest released package from GitHub: https://github.com/druglogics/druglogics-synergy/packages/.
-The file of interest is `synergy-1.2.1-jar-with-dependencies.jar`, which includes all dependencies and does not require any manual installation whatsoever.
-
-2. **The other option** is to clone the repositories ^[Due to GitHub's security policies, not allowing users to download a public package without a PAT (Personal Access Token) as of November 2021, you have to install each dependency repository (gitsbe, drabme) separately.] and install them manually using Maven:
+3. **Manual installation**: Clone the repositories ^[Due to GitHub's security policies, not allowing users to download a public package without a PAT (Personal Access Token) as of November 2021, you have to install each dependency repository (gitsbe, drabme) separately.] and install them using Maven:
 
 ```
 git clone https://github.com/druglogics/gitsbe.git
@@ -56,7 +63,9 @@ mvn clean install
 After executing the above commands, the `synergy-1.2.1-jar-with-dependencies.jar` file will be created inside the `druglogics-synergy/target` directory.
 
 :::{.note}
-Even if you choose the 1st option, make sure you clone the `druglogics-synergy` repo and put the `synergy-1.2.1-jar-with-dependencies.jar` file inside the `druglogics-synergy/target` directory (as `mvn clean install` command does) to be inline with the next instructions in this tutorial.
+Even if you choose the 1st or 2nd option, make sure you clone the `druglogics-synergy` repo so that you have the input directories for the examples shown in the next sections.
+
+For option (2) remember to put the `synergy-1.2.1-jar-with-dependencies.jar` file inside the `druglogics-synergy/target` directory (as `mvn clean install` command does) to be inline with the instructions in this tutorial.
 :::
 
 # Run CASCADE 1.0 Example {-}
@@ -68,6 +77,11 @@ The command to execute from the root of the `druglogics-synergy` directory is th
 
 ```
 java -cp target/synergy-1.2.1-jar-with-dependencies.jar eu.druglogics.synergy.Launcher --inputDir=ags_cascade_1.0
+```
+
+If you are using the **Docker image**, run the equivalent command (you just need to mount the current directory to another and specify the input directory):
+```
+docker run -v ${PWD}:/data bblodfon/druglogics-synergy:1.0 --inputDir=/data/ags_cascade_1.0
 ```
 
 The above command should create a new directory inside `ags_cascade_1.0` that includes the output result files.
@@ -186,8 +200,8 @@ DT::datatable(data = pred_hsa, options =
 ```
 
 ```{=html}
-<div id="htmlwidget-a47ca9c3c1c330988af6" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a47ca9c3c1c330988af6">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],["PI-PD","PI-CT","PI-BI","PI-PK","PI-AK","PI-5Z","PD-CT","PD-BI","PD-PK","PD-AK","PD-5Z","CT-BI","CT-PK","CT-AK","CT-5Z","BI-PK","BI-AK","BI-5Z","PK-AK","PK-5Z","AK-5Z"],[-0.633699633699634,0,-0.204448329448329,-0.224852862493312,-0.0333288172334372,-0.313618771165941,0,-0.325976107226107,0,-0.942822870851659,0,0,0,0,0,-0.564138576779026,-0.165625813166797,0,-0.518270229440091,0,-0.462540217557837],[1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>perturbation<\/th>\n      <th>ss_score<\/th>\n      <th>observed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"lengthMenu":[7,14,21],"searching":false,"order":[[2,"asc"]],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':value == 0 ? \"white\" : value == 1 ? \"#ffffa1\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.rowCallback"],"jsHooks":[]}</script>
+<div id="htmlwidget-9ec3e2316306d886157a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9ec3e2316306d886157a">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],["PI-PD","PI-CT","PI-BI","PI-PK","PI-AK","PI-5Z","PD-CT","PD-BI","PD-PK","PD-AK","PD-5Z","CT-BI","CT-PK","CT-AK","CT-5Z","BI-PK","BI-AK","BI-5Z","PK-AK","PK-5Z","AK-5Z"],[-0.633699633699634,0,-0.204448329448329,-0.224852862493312,-0.0333288172334372,-0.313618771165941,0,-0.325976107226107,0,-0.942822870851659,0,0,0,0,0,-0.564138576779026,-0.165625813166797,0,-0.518270229440091,0,-0.462540217557837],[1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>perturbation<\/th>\n      <th>ss_score<\/th>\n      <th>observed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"lengthMenu":[7,14,21],"searching":false,"order":[[2,"asc"]],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0}],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':value == 0 ? \"white\" : value == 1 ? \"#ffffa1\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.rowCallback"],"jsHooks":[]}</script>
 ```
 
 ## Receiver Operating Characteristic (ROC) {-}
@@ -244,12 +258,15 @@ grid(lwd = 0.5)
 
 In this section we show how we can make our predictions better by normalizing them to the predictions of gitsbe models trained to a **random proliferative** [training data profile](https://druglogics.github.io/druglogics-doc/training-data.html#unperturbed-condition---globaloutput-response).
 The only change required to run the random model simulation is to change the respective training data file.
-We have the required [training data file](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/random_train) already in the `druglogics-synergy` repository so execute the following two commands from its root:
+We have the required [training data file](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/random_train) already in the `druglogics-synergy` repository so execute the following commands from its root:
 
 ```
 cat ags_cascade_1.0/random_train > ags_cascade_1.0/training
 
 java -cp target/synergy-1.2.1-jar-with-dependencies.jar eu.druglogics.synergy.Launcher --inputDir=ags_cascade_1.0
+
+# Using the docker image
+docker run -v ${PWD}:/data bblodfon/druglogics-synergy:1.0 --inputDir=/data/ags_cascade_1.0
 ```
 
 :::{.note}
@@ -293,8 +310,8 @@ DT::datatable(data = pred_hsa, options =
 ```
 
 ```{=html}
-<div id="htmlwidget-0e81d3b3f4d9e61b6cca" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0e81d3b3f4d9e61b6cca">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],["PI-PD","PI-CT","PI-BI","PI-PK","PI-AK","PI-5Z","PD-CT","PD-BI","PD-PK","PD-AK","PD-5Z","CT-BI","CT-PK","CT-AK","CT-5Z","BI-PK","BI-AK","BI-5Z","PK-AK","PK-5Z","AK-5Z"],[-0.633699633699634,0,-0.204448329448329,-0.224852862493312,-0.0333288172334372,-0.313618771165941,0,-0.325976107226107,0,-0.942822870851659,0,0,0,0,0,-0.564138576779026,-0.165625813166797,0,-0.518270229440091,0,-0.462540217557837],[-0.527317415730337,0,-0.823879551820728,-0.903210272873194,-0.280827824087381,-0.121067415730337,0,-0.187235478132859,0,-0.32705389848247,0,0,0,0,0,-1.75840336134454,-0.277121374865736,0,-0.461048935703314,0,-0.168310020637469],[-0.106382217969296,0,0.619431222372399,0.678357410379883,0.247499006853944,-0.192551355435604,0,-0.138740629093248,0,-0.615768972369189,0,0,0,0,0,1.19426478456551,0.111495561698939,0,-0.0572212937367771,0,-0.294230196920368],[1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>perturbation<\/th>\n      <th>ss_score<\/th>\n      <th>prolif_score<\/th>\n      <th>norm_score<\/th>\n      <th>observed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"lengthMenu":[7,14,21],"searching":false,"order":[[2,"asc"]],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0}],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'background-color':value == 0 ? \"white\" : value == 1 ? \"#ffffa1\" : null});\nvar value=data[1]; $(row).css({'background-color':value == \"BI-PK\" ? \"#ade2e6\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.rowCallback"],"jsHooks":[]}</script>
+<div id="htmlwidget-65c50377f90f5a8e034a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-65c50377f90f5a8e034a">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],["PI-PD","PI-CT","PI-BI","PI-PK","PI-AK","PI-5Z","PD-CT","PD-BI","PD-PK","PD-AK","PD-5Z","CT-BI","CT-PK","CT-AK","CT-5Z","BI-PK","BI-AK","BI-5Z","PK-AK","PK-5Z","AK-5Z"],[-0.633699633699634,0,-0.204448329448329,-0.224852862493312,-0.0333288172334372,-0.313618771165941,0,-0.325976107226107,0,-0.942822870851659,0,0,0,0,0,-0.564138576779026,-0.165625813166797,0,-0.518270229440091,0,-0.462540217557837],[-0.527317415730337,0,-0.823879551820728,-0.903210272873194,-0.280827824087381,-0.121067415730337,0,-0.187235478132859,0,-0.32705389848247,0,0,0,0,0,-1.75840336134454,-0.277121374865736,0,-0.461048935703314,0,-0.168310020637469],[-0.106382217969296,0,0.619431222372399,0.678357410379883,0.247499006853944,-0.192551355435604,0,-0.138740629093248,0,-0.615768972369189,0,0,0,0,0,1.19426478456551,0.111495561698939,0,-0.0572212937367771,0,-0.294230196920368],[1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>perturbation<\/th>\n      <th>ss_score<\/th>\n      <th>prolif_score<\/th>\n      <th>norm_score<\/th>\n      <th>observed<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"lengthMenu":[7,14,21],"searching":false,"order":[[2,"asc"]],"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 5, 3, \",\", \".\");\n  }"},{"className":"dt-right","targets":[2,3,4,5]},{"orderable":false,"targets":0}],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'background-color':value == 0 ? \"white\" : value == 1 ? \"#ffffa1\" : null});\nvar value=data[1]; $(row).css({'background-color':value == \"BI-PK\" ? \"#ade2e6\" : null});\n}"}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.rowCallback"],"jsHooks":[]}</script>
 ```
 
 :::{.green-box}

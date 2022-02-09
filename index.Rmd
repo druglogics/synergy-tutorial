@@ -22,17 +22,24 @@ You can find the full documentation for these two modules in the following link:
 
 # Install {-}
 
-:::{.green-box}
-Firstly, make sure you have installed [Maven](https://maven.apache.org/install.html) `3.6.0` and `Java 8` (minimum working versions).
+There are **3 ways** to install `druglogics-synergy`.
+We list them below from easiest to hardest:
+
+1. Use the **Docker image** (`1.0` version, `druglogics-synergy` at `1.2.1` version) where all dependencies and external libraries (for [attractor calculation](https://druglogics.github.io/druglogics-doc/gitsbe-config.html#attractor-tool)) are already installed:
+
+```
+docker pull bblodfon/druglogics-synergy:1.0
+```
+
+:::{.orange-box}
+If you are not using Docker, make sure you have installed [Maven](https://maven.apache.org/install.html) `3.6.0` and `Java 8` (minimum working versions).
 For the rest of the tutorial we are going to use the `druglogics-synergy` at version `1.2.1`, which includes `gitsbe` at `1.3.1` version and `drabme` at `1.2.1` version.
 :::
 
-There are **two ways** to install `druglogics-synergy`.
+2. Download a **released GitHub package** from: https://github.com/druglogics/druglogics-synergy/packages/.
+The file of interest is `synergy-1.2.1-jar-with-dependencies.jar`, which includes all dependencies and does not require any manual installation whatsoever (but you need to have `Java` installed to run it).
 
-1. **The easiest option** is to download the latest released package from GitHub: https://github.com/druglogics/druglogics-synergy/packages/.
-The file of interest is `synergy-1.2.1-jar-with-dependencies.jar`, which includes all dependencies and does not require any manual installation whatsoever.
-
-2. **The other option** is to clone the repositories ^[Due to GitHub's security policies, not allowing users to download a public package without a PAT (Personal Access Token) as of November 2021, you have to install each dependency repository (gitsbe, drabme) separately.] and install them manually using Maven:
+3. **Manual installation**: Clone the repositories ^[Due to GitHub's security policies, not allowing users to download a public package without a PAT (Personal Access Token) as of November 2021, you have to install each dependency repository (gitsbe, drabme) separately.] and install them using Maven:
 
 ```
 git clone https://github.com/druglogics/gitsbe.git
@@ -56,7 +63,9 @@ mvn clean install
 After executing the above commands, the `synergy-1.2.1-jar-with-dependencies.jar` file will be created inside the `druglogics-synergy/target` directory.
 
 :::{.note}
-Even if you choose the 1st option, make sure you clone the `druglogics-synergy` repo and put the `synergy-1.2.1-jar-with-dependencies.jar` file inside the `druglogics-synergy/target` directory (as `mvn clean install` command does) to be inline with the next instructions in this tutorial.
+Even if you choose the 1st or 2nd option, make sure you clone the `druglogics-synergy` repo so that you have the input directories for the examples shown in the next sections.
+
+For option (2) remember to put the `synergy-1.2.1-jar-with-dependencies.jar` file inside the `druglogics-synergy/target` directory (as `mvn clean install` command does) to be inline with the instructions in this tutorial.
 :::
 
 # Run CASCADE 1.0 Example {-}
@@ -68,6 +77,11 @@ The command to execute from the root of the `druglogics-synergy` directory is th
 
 ```
 java -cp target/synergy-1.2.1-jar-with-dependencies.jar eu.druglogics.synergy.Launcher --inputDir=ags_cascade_1.0
+```
+
+If you are using the **Docker image**, run the equivalent command (you just need to mount the current directory to another and specify the input directory):
+```
+docker run -v ${PWD}:/data bblodfon/druglogics-synergy:1.0 --inputDir=/data/ags_cascade_1.0
 ```
 
 The above command should create a new directory inside `ags_cascade_1.0` that includes the output result files.
@@ -224,12 +238,15 @@ grid(lwd = 0.5)
 
 In this section we show how we can make our predictions better by normalizing them to the predictions of gitsbe models trained to a **random proliferative** [training data profile](https://druglogics.github.io/druglogics-doc/training-data.html#unperturbed-condition---globaloutput-response).
 The only change required to run the random model simulation is to change the respective training data file.
-We have the required [training data file](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/random_train) already in the `druglogics-synergy` repository so execute the following two commands from its root:
+We have the required [training data file](https://github.com/druglogics/druglogics-synergy/blob/v1.2.1/ags_cascade_1.0/random_train) already in the `druglogics-synergy` repository so execute the following commands from its root:
 
 ```
 cat ags_cascade_1.0/random_train > ags_cascade_1.0/training
 
 java -cp target/synergy-1.2.1-jar-with-dependencies.jar eu.druglogics.synergy.Launcher --inputDir=ags_cascade_1.0
+
+# Using the docker image
+docker run -v ${PWD}:/data bblodfon/druglogics-synergy:1.0 --inputDir=/data/ags_cascade_1.0
 ```
 
 :::{.note}
